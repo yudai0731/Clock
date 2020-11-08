@@ -8,6 +8,8 @@ void Reshape(int,int);
 void Timer(int);
 
 int main(int argc,char **argv){
+    srand(10);
+    // 初期化処理
     glutInit(&argc,argv);
     glutInitWindowSize(320,240);
     glutCreateWindow("clock");
@@ -16,51 +18,36 @@ int main(int argc,char **argv){
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glutTimerFunc(500,Timer,0);
     glClearColor(0.0,0.0,0.0,1.0);
+    // メインループ
     glutMainLoop();
     return 0;
 }
 
 void Display(void){
+    int i;
+    // 画面サイズ取得
     int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
     int yc = glutGet(GLUT_WINDOW_HEIGHT)/2;
+    // インデックス描画用
+    double theta;
+    double l; 
+    double x1,x2;
+    double y1,y2;
+    // 針の角度
     double thetas,thetam,thetah;
+    // 針の座標
     int xs,ys,xm,ym,xh,yh;
-    int ls=50;
-    int lm = 120;
-    int lh = 80; 
+    // 針の長さ
+    int ls=80;
+    int lm = 105;
+    int lh = 90; 
+    // 時間取得
     time_t tt;
     struct tm *ts;
     time(&tt);
     ts = localtime(&tt);
-    /*
-    printf("%d年%d月%d日(",1900+ts->tm_year,
-        1+ts->tm_mon,ts->tm_mday);
-    switch (ts->tm_wday)
-        {
-        case 0:
-            printf("日");
-            break;
-        case 1:
-            printf("月");
-            break;
-        case 2:
-            printf("火");
-            break;
-        case 3:
-            printf("水");
-            break;    
-        case 4:
-            printf("木");
-            break;
-        case 5:
-            printf("金");
-            break;  
-        case 6:
-            printf("土");
-            break;                    
-        }
-        printf(") %02d時%02d分%02d秒\n",ts->tm_hour,ts->tm_min,ts->tm_sec);
-    */
+
+    // 針の角度,座標を計算
     thetas = 2*M_PI*ts->tm_sec/60;
     thetam = 2*M_PI*(60*ts->tm_min+ts->tm_sec)/3600;
     thetah = 2*M_PI*(3600*(ts->tm_hour%12)+60*ts->tm_min+ts->tm_sec)/43200;
@@ -72,26 +59,68 @@ void Display(void){
     yh = yc-lh*cos(thetah);
 
     glClear(GL_COLOR_BUFFER_BIT);
-    glLineWidth(1.0);
+
+    // インデックス描画
+    for(i=1;i<=60;i++){
+        glColor3ub(255,255,255);
+        glLineWidth(1.0);
+        l=100;
+        if(i%5==0){  // 5の倍数の針は長くする
+        l = 90;
+        }
+        theta = 2*M_PI*i/60;
+        x1 = xc+l*sin(theta);
+        y1 = yc-l*cos(theta);  
+        l = 110;
+        x2 = xc+l*sin(theta);
+        y2 = yc-l*cos(theta);
+        glBegin(GL_LINES);
+        glVertex2i(x1,y1);
+        glVertex2i(x2,y2);
+        glEnd();
+ 
+        if(i%5==0){ // 5の倍数のとき文字を表示
+            l =80;
+            x2 = xc+l*sin(theta);
+            y2 = yc-l*cos(theta);
+            if(i/5<10){ // 一桁表示用
+                glRasterPos2i(x2-5,y2+5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'0'+i/5);
+            }else{ // 二桁表示用
+                glRasterPos2i(x2-14,y2+5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'1');
+                glRasterPos2i(x2-5,y2+5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'0'+(i/5)%5);
+            }
+        }
+    }
+
+
+    //時針描画
+    glLineWidth(4.0);
+    glColor3ub(255,255,255);
+    glBegin(GL_LINES);
+    glVertex2i(xc,yc);
+    glVertex2i(xh,yh);
+    glEnd();
+    //分針描画
+    glLineWidth(3.0);
+    glColor3ub(255,255,255);
+    glBegin(GL_LINES);
+    glVertex2i(xc,yc);
+    glVertex2i(xm,ym);
+    glEnd();
+    //秒針描画
+    glLineWidth(2.0);
     glColor3ub(255,0,0);
     glBegin(GL_LINES);
     glVertex2i(xc,yc);
     glVertex2i(xs,ys);
     glEnd();
-    glLineWidth(5.0);
-    glColor3ub(255,255,254);
-    glBegin(GL_LINES);
-    glVertex2i(xc,yc);
-    glVertex2i(xm,ym);
-    glEnd();
-    glLineWidth(3.0);
-    glBegin(GL_LINES);
-    glVertex2i(xc,yc);
-    glVertex2i(xh,yh);
-    glEnd();
     glFlush();
 }
 
+// windowサイズが変更されたときの処理
 void Reshape(int w,int h){
     printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
     glViewport(0,0,w,h);
@@ -102,6 +131,7 @@ void Reshape(int w,int h){
     glTranslated(0,-h,0);
 }
 
+// タイマーの処理
 void Timer(int value){
     glutPostRedisplay();
     glutTimerFunc(500,Timer,0);
