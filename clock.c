@@ -25,6 +25,7 @@ int main(int argc,char **argv){
 
 void Display(void){
     int i;
+    char s[3];
     // 画面サイズ取得
     int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
     int yc = glutGet(GLUT_WINDOW_HEIGHT)/2;
@@ -80,17 +81,28 @@ void Display(void){
         glEnd();
  
         if(i%5==0){ // 5の倍数のとき文字を表示
+            sprintf(s,"%d",i/5);
             l =80;
             x2 = xc+l*sin(theta);
             y2 = yc-l*cos(theta);
             if(i/5<10){ // 一桁表示用
+                glColor3ub(0,0,255);
+                glRasterPos2i(x2-5+1,y2+5+1);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+
+                glColor3ub(255,255,255);
                 glRasterPos2i(x2-5,y2+5);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'0'+i/5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
             }else{ // 二桁表示用
+                glColor3ub(0,0,255);
+                glRasterPos2i(x2-14+1,y2+5+1);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
+                glColor3ub(255,255,255);
+
                 glRasterPos2i(x2-14,y2+5);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'1');
-                glRasterPos2i(x2-5,y2+5);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'0'+(i/5)%5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
             }
         }
     }
