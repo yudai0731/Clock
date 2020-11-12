@@ -2,6 +2,11 @@
 #include<stdio.h>
 #include<time.h>
 #include<math.h>
+#include<string.h>
+
+// windowのサイズを定義
+#define WINDOW_W 320
+#define WINDOW_H 320
 
 void Display(void);
 void Reshape(int,int);
@@ -11,7 +16,7 @@ int main(int argc,char **argv){
     srand(10);
     // 初期化処理
     glutInit(&argc,argv);
-    glutInitWindowSize(320,240);
+    glutInitWindowSize(WINDOW_W,WINDOW_H);
     glutCreateWindow("clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
@@ -25,10 +30,17 @@ int main(int argc,char **argv){
 
 void Display(void){
     int i;
+    char *timestr;
+    int month,wday;
+    int timestr_len = 4+1+1+1+2+1+1+1; //year+space+space+month+space+(+)+\0
+    char month_eg[12][10] = {{"January"},{"February"},{"March"},{"April"},{"May"},
+    {"June"},{"July"},{"August"},{"Septermber"},{"October"},{"November"},{"December"}};
+    char wday_eg[7][10] = {{"Sunday"},{"Monday"},{"Tuesday"},{"Wednesday"},{"Thursday"},{"Friday"},{"Saturday"}};
+
     char s[3];
     // 画面サイズ取得
     int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
-    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2;
+    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2+30;
     // インデックス描画用
     double theta;
     double l; 
@@ -61,6 +73,30 @@ void Display(void){
 
     glClear(GL_COLOR_BUFFER_BIT);
 
+    // year,month,dayを表示
+    month = ts->tm_mon;
+    wday =  ts->tm_wday;
+    timestr_len+=strlen(month_eg[month])+strlen(wday_eg[wday]);
+    timestr = (char *)malloc(timestr_len*sizeof(char));
+    sprintf(timestr,"%d %s %02d (%s)",1900+ts->tm_year,month_eg[month],ts->tm_mday,wday_eg[wday]);
+    glColor3ub(255,255,255);
+    glRasterPos2i(WINDOW_W/2-(18*timestr_len/4),30);
+    for(i=0;i<timestr_len;i++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,timestr[i]);
+    }
+    free(timestr);
+
+    //hour,min,secを表示
+    timestr = (char *)malloc(9*sizeof(char));
+    sprintf(timestr,"%02d:%02d:%02d",ts->tm_hour,ts->tm_min,ts->tm_sec);
+    timestr_len = strlen(timestr);
+    glColor3ub(100,255,100);
+    glRasterPos2i(WINDOW_W/2-(18*timestr_len/4),60);
+    for(i=0;i<timestr_len;i++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,timestr[i]);
+    }
+    free(timestr);
+
     // インデックス描画
     for(i=1;i<=60;i++){
         glColor3ub(255,255,255);
@@ -86,20 +122,11 @@ void Display(void){
             x2 = xc+l*sin(theta);
             y2 = yc-l*cos(theta);
             if(i/5<10){ // 一桁表示用
-                glColor3ub(0,0,255);
-                glRasterPos2i(x2-5+1,y2+5+1);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
-
                 glColor3ub(255,255,255);
                 glRasterPos2i(x2-5,y2+5);
                 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
-            }else{ // 二桁表示用
-                glColor3ub(0,0,255);
-                glRasterPos2i(x2-14+1,y2+5+1);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
-                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
-                glColor3ub(255,255,255);
 
+            }else{ // 二桁表示用
                 glRasterPos2i(x2-14,y2+5);
                 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
                 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
@@ -134,13 +161,17 @@ void Display(void){
 
 // windowサイズが変更されたときの処理
 void Reshape(int w,int h){
-    printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
+    //printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
     glViewport(0,0,w,h);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluOrtho2D(0,w,0,h);
     glScaled(1,-1,1);
     glTranslated(0,-h,0);
+
+    //windowサイズ固定 
+    glutReshapeWindow(WINDOW_W,WINDOW_H);
+
 }
 
 // タイマーの処理
