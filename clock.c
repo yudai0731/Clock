@@ -11,12 +11,15 @@
 #define WINDOW_W 320
 #define WINDOW_H 320
 
+double loop1=0;
+double loop2=0;
 void Display(void);
 void Reshape(int,int);
 void Timer(int);
 void Printstr(int,int,char *,int);
 void calPosition(int *,int *,int,int,int,double);
 void drawLine(int,int,int,int);
+void drawDesign(int,int,int,int,int,double);
 
 int main(int argc,char **argv){
     // 初期化処理
@@ -83,6 +86,92 @@ void Display(void){
     calPosition(&xs,&ys,xc,yc,ls,thetas);
     calPosition(&xm,&ym,xc,yc,lm,thetam);
     calPosition(&xh,&yh,xc,yc,lh,thetah);
+
+// デザイン描画
+l=128;
+#ifdef DARKMODE
+glColor3ub(218,112,214);
+#else 
+glColor3ub(127,255,0);
+#endif 
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,0,130,l,loop1);
+l=124;
+glBegin(GL_POLYGON);
+#ifdef DARKMODE
+glColor3ub(38,38,38);
+#else 
+glColor3ub(245,245,255);
+#endif
+drawDesign(xc,yc,-1,131,l,loop1);
+
+
+
+l=128;
+#ifdef DARKMODE
+glColor3ub(218,112,214);
+#else 
+glColor3ub(127,255,0);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,160,270,l,loop1);
+l=124;
+#ifdef DARKMODE
+glColor3ub(38,38,38);
+#else 
+glColor3ub(245,245,255);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,159,271,l,loop1);
+
+
+
+
+
+l=121;
+#ifdef DARKMODE
+glColor3ub(153,50,204);
+#else 
+glColor3ub(0,250,154);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,70,200,l,loop2);
+l=118;
+#ifdef DARKMODE
+glColor3ub(38,38,38);
+#else 
+glColor3ub(245,245,255);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,69,201,l,loop2);
+
+
+
+l=121;
+#ifdef DARKMODE
+glColor3ub(153,50,204);
+#else 
+glColor3ub(0,250,154);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,240,380,l,loop2);
+l=118;
+#ifdef DARKMODE
+glColor3ub(38,38,38);
+#else 
+glColor3ub(245,245,255);
+#endif
+glBegin(GL_POLYGON);
+drawDesign(xc,yc,239,381,l,loop2);
+
+loop1+=0.01;
+loop2-=0.02;
+if(loop1>=2*M_PI){
+    loop1=0;
+}
+if(loop2<=-2*M_PI){
+    loop2=0;
+}
 
 // year,month,dayを表示
     month = ts->tm_mon;
@@ -226,3 +315,16 @@ void drawLine(int x1,int y1,int x2,int y2){
     glVertex2i(x2,y2);
     glEnd();
 };
+
+// デザインを描画
+void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
+    int x,y,i;
+    double theta;
+    glBegin(GL_POLYGON);
+    for(i=thetaStart;i<=thetaEnd;i++){
+        theta= 2*M_PI*i/360;
+        calPosition(&x,&y,xc,yc,l,theta+loop);
+        glVertex2i(x,y);
+    }
+    glEnd();
+}
