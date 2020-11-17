@@ -1,0 +1,64 @@
+\documentclass[a4j]{jarticle}
+    \usepackage[dvipdfmx]{graphicx}
+    \usepackage[ top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]
+    {geometry}
+    \usepackage{ascmac}
+    \usepackage{array}
+    \usepackage{here}
+    \usepackage{url}
+    \usepackage{listings, jlisting}
+    \renewcommand{\lstlistingname}{リスト}
+\lstset{language=c,
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle=\textit,
+  classoffset=1,
+  keywordstyle=\bfseries,
+  frame=tRBl,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  tabsize=4
+}
+
+\makeatletter
+\def\@thesis{プログラミング演習 レポート}
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+
+\def\@maketitle{
+\begin{center}
+{\huge \@thesis \par} %修士論文と記載される部分
+\vspace{10mm}
+{\LARGE\bf \@title \par}% 論文のタイトル部分
+\vspace{10mm}
+{\Large \@date\par}	% 提出年月日部分
+\vspace{20mm}
+{\Large \@department \par}	% 所属部分
+{\Large 学籍番号　\@id \par}	% 学籍番号部分
+\vspace{10mm}
+{\Large 氏名　\@author}% 氏名 
+\end{center}
+\par\vskip 1.5em
+}
+
+\title{題名}
+\date{提出期限　2020年11月24日 17:00}
+\department{組番号　408}
+\id{17406}
+\author{金澤雄大}
+
+    \begin{document}
+    \maketitle
+    \thispagestyle{empty}
+    \clearpage
+    \addtocounter{page}{-1}
+    \section{目的}
+
+
+        \begin{thebibliography}{9}
+          \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
+          \end{thebibliography}
+\end{document}
+

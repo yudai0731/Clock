@@ -4,15 +4,12 @@
 #include<math.h>
 #include<string.h>
 
-//#define LIGHTMODE
-#define DARKMODE
-
 // windowのサイズを定義
 #define WINDOW_W 320
 #define WINDOW_H 320
-
-double loop1=0;
-double loop2=0;
+int dispMode =0; // 0 : LIGHTMODE 1 : DARKMODE
+double loop1=0; //use for design rotation
+double loop2=0; //use for design rotation
 void Display(void);
 void Reshape(int,int);
 void Timer(int);
@@ -20,21 +17,28 @@ void Printstr(int,int,char *,int);
 void calPosition(int *,int *,int,int,int,double);
 void drawLine(int,int,int,int);
 void drawDesign(int,int,int,int,int,double);
+void Mouse(int,int,int,int);
 
 int main(int argc,char **argv){
-    // 初期化処理
+// 初期化処理
+    // 引数処理
     glutInit(&argc,argv);
+    // 初期Windowサイズ設定
     glutInitWindowSize(WINDOW_W,WINDOW_H);
+    // 新規Window作成
     glutCreateWindow("clock");
+    // 関数登録
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+    glutMouseFunc(Mouse);
     glutTimerFunc(500,Timer,0);
-    #ifdef DARKMODE
-    glClearColor(0.15,0.15,0.15,1.0);
-    #else
-    glClearColor(0.96,0.96,1.0,1.0);
-    #endif
+    // display初期化
+    glutInitDisplayMode(GLUT_RGBA);
+    if(dispMode){ // darkmodeのとき
+        glClearColor(0.15,0.15,0.15,1.0);
+    }else{ // lightmodeのとき
+        glClearColor(0.96,0.96,1.0,1.0);
+    }
     // メインループ
     glutMainLoop();
     return 0;
@@ -42,7 +46,6 @@ int main(int argc,char **argv){
 
 void Display(void){
     int i; //ループ用
-    
     char *timestr; // 時間情報表示用文字列
     int month,wday; // 月の番号,曜日の番号取得用
     int timestr_len = 12; //year+space+space+month+space+(+)+\0
@@ -54,7 +57,7 @@ void Display(void){
     
     // 画面サイズ取得
     int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
-    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2+30;
+    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2+30; // y軸方向の中心は30ずらす.
     
     // インデックス描画用
     double l,theta; 
@@ -70,7 +73,7 @@ void Display(void){
     int lm = 105;
     int lh = 90; 
 
-
+    // 描画クリア
     glClear(GL_COLOR_BUFFER_BIT);
     
 // 時間取得
@@ -88,137 +91,129 @@ void Display(void){
     calPosition(&xh,&yh,xc,yc,lh,thetah);
 
 // デザイン描画
-l=128;
-#ifdef DARKMODE
-glColor3ub(218,112,214);
-#else 
-glColor3ub(127,255,0);
-#endif 
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,0,130,l,loop1);
-l=124;
-glBegin(GL_POLYGON);
-#ifdef DARKMODE
-glColor3ub(38,38,38);
-#else 
-glColor3ub(245,245,255);
-#endif
-drawDesign(xc,yc,-1,131,l,loop1);
+    l=128;
+    if(dispMode){
+    glColor3ub(218,112,214);
+    }else{
+    glColor3ub(127,255,0);
+    }
+    drawDesign(xc,yc,0,130,l,loop1);
+    l=124;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,-1,131,l,loop1);
 
 
 
-l=128;
-#ifdef DARKMODE
-glColor3ub(218,112,214);
-#else 
-glColor3ub(127,255,0);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,160,270,l,loop1);
-l=124;
-#ifdef DARKMODE
-glColor3ub(38,38,38);
-#else 
-glColor3ub(245,245,255);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,159,271,l,loop1);
+    l=128;
+    if(dispMode){
+    glColor3ub(218,112,214);
+    }else{
+    glColor3ub(127,255,0);
+    }
+    drawDesign(xc,yc,160,270,l,loop1);
+    l=124;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,159,271,l,loop1);
 
 
 
 
 
-l=121;
-#ifdef DARKMODE
-glColor3ub(153,50,204);
-#else 
-glColor3ub(0,250,154);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,70,200,l,loop2);
-l=118;
-#ifdef DARKMODE
-glColor3ub(38,38,38);
-#else 
-glColor3ub(245,245,255);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,69,201,l,loop2);
+    l=121;
+    if(dispMode){
+    glColor3ub(153,50,204);
+    }else{
+    glColor3ub(0,250,154);
+    }
+    drawDesign(xc,yc,70,200,l,loop2);
+    l=118;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,69,201,l,loop2);
 
 
 
-l=121;
-#ifdef DARKMODE
-glColor3ub(153,50,204);
-#else 
-glColor3ub(0,250,154);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,240,380,l,loop2);
-l=118;
-#ifdef DARKMODE
-glColor3ub(38,38,38);
-#else 
-glColor3ub(245,245,255);
-#endif
-glBegin(GL_POLYGON);
-drawDesign(xc,yc,239,381,l,loop2);
+    l=121;
+    if(dispMode){
+    glColor3ub(153,50,204);
+    }else{
+    glColor3ub(0,250,154);
+    }
+    drawDesign(xc,yc,240,380,l,loop2);
+    l=118;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,239,381,l,loop2);
 
-loop1+=0.01;
-loop2-=0.02;
-if(loop1>=2*M_PI){
-    loop1=0;
-}
-if(loop2<=-2*M_PI){
-    loop2=0;
-}
+// デザイン回転
+    loop1+=0.05;
+    loop2-=0.1;
+    if(loop1>=2*M_PI){
+        loop1=0;
+    }
+    if(loop2<=-2*M_PI){
+        loop2=0;
+    }
 
 // year,month,dayを表示
-    month = ts->tm_mon;
-    wday =  ts->tm_wday;
+    month = ts->tm_mon; // 月の番号を取得
+    wday =  ts->tm_wday; // 曜日の番号を取得 
     // 可変文字列生成
-    timestr_len+=strlen(month_eg[month])+strlen(wday_eg[wday]);
-    timestr = (char *)malloc(timestr_len*sizeof(char));
-    sprintf(timestr,"%d %s %02d (%s)",1900+ts->tm_year,month_eg[month],ts->tm_mday,wday_eg[wday]);
+    timestr_len+=strlen(month_eg[month])+strlen(wday_eg[wday]); // 文字数計算
+    timestr = (char *)malloc(timestr_len*sizeof(char)); // 配列確保
+    sprintf(timestr,"%d %s %02d (%s)",1900+ts->tm_year,month_eg[month],ts->tm_mday,wday_eg[wday]); // timestrに文字列書き込み
     // 文字列表示
-    #ifdef DARKMODE
+    if(dispMode){
     glColor3ub(0,191,255);
-    #else 
+    }else{
     glColor3ub(255,102,0);
-    #endif 
-    Printstr(WINDOW_W/2-(18*timestr_len/4),30+1,timestr,timestr_len);
+    }
+    Printstr(WINDOW_W/2-(18*timestr_len/4),30+1,timestr,timestr_len); // 文字列表示
     // 領域解放
     free(timestr);
 
 //hour,min,secを表示
     // 文字列生成
-    timestr = (char *)malloc(9*sizeof(char));
-    sprintf(timestr,"%02d:%02d:%02d",ts->tm_hour,ts->tm_min,ts->tm_sec);
-    timestr_len = strlen(timestr);
+    timestr = (char *)malloc(9*sizeof(char)); // 配列確保
+    sprintf(timestr,"%02d:%02d:%02d",ts->tm_hour,ts->tm_min,ts->tm_sec); // timestrに文字列書き込み
+    timestr_len = strlen(timestr); // 文字列の長さを取得
     // 文字列表示
-    #ifdef DARKMODE
+    if(dispMode){
     glColor3ub(0,255,0);
-    #else 
+    }else{
     glColor3ub(0,0,205);
-    #endif 
-    Printstr(WINDOW_W/2-(18*timestr_len/4)+1,60,timestr,timestr_len);
-
-    #ifdef DARKMODE
+    }
+    Printstr(WINDOW_W/2-(18*timestr_len/4)+1,60,timestr,timestr_len); // 文字列表示(太文字用)
+    if(dispMode){
     glColor3ub(51,255,102);
-    #else 
+    }else{
     glColor3ub(0,0,205);
-    #endif 
-    Printstr(WINDOW_W/2-(18*timestr_len/4),60,timestr,timestr_len);
+    }
+    Printstr(WINDOW_W/2-(18*timestr_len/4),60,timestr,timestr_len); // 文字列表示
     // 領域解放
     free(timestr);
 
 // インデックス描画
     for(i=1;i<=60;i++){
-        #ifdef DARKMODE
+        if(dispMode){
         glColor3ub(255,255,255);
-        #else 
+        }else{
         glColor3ub(0,0,0);
-        #endif 
+        }
         glLineWidth(2.0);
         l=100; // インデックスの先端を長さ110にする
         if(i%5==0){  // 5の倍数の針は長くする
@@ -230,11 +225,12 @@ if(loop2<=-2*M_PI){
         calPosition(&x2,&y2,xc,yc,l,theta);
         drawLine(x1,y1,x2,y2);
 
-        #ifdef DARKMODE
+
+        if(dispMode){
         glColor3ub(255,255,255);
-        #else 
+        }else{
         glColor3ub(0,0,0);
-        #endif 
+        }
         if(i%5==0){ // 5の倍数のとき文字を表示
             sprintf(s,"%d",i/5);
             l =80; // 文字表示位置を80にする
@@ -253,11 +249,11 @@ if(loop2<=-2*M_PI){
 
 // 針を描画
     //時針描画
-    #ifdef DARKMODE
+    if(dispMode){
     glColor3ub(255,255,255);
-    #else 
+    }else{
     glColor3ub(0,0,0);
-    #endif 
+    }
     glLineWidth(5.0);
     drawLine(xc,yc,xh,yh);
     //分針描画
@@ -327,4 +323,21 @@ void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
         glVertex2i(x,y);
     }
     glEnd();
+}
+
+void Mouse(int b,int s,int x,int y){
+    if(b==GLUT_LEFT_BUTTON){
+        if(s==GLUT_UP){
+            if(dispMode==1){
+                dispMode=0;
+            }else{
+                dispMode=1;
+            }
+        }
+        if(dispMode){
+            glClearColor(0.15,0.15,0.15,1.0);
+        }else{
+            glClearColor(0.96,0.96,1.0,1.0);
+        }
+    }
 }

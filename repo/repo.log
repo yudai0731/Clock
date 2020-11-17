@@ -1,0 +1,683 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.30)  17 NOV 2020 10:10
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex
+(c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex
+LaTeX2e <2017-04-15>
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(c:/w32tex/share/texmf-dist/tex/jlatex/base/jarticle.cls) (c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls
+Document Class: j-article 2000/05/19 v1.4b Standard JLaTeX document class
+(c:/w32tex/share/texmf-dist/tex/jlatex/base/j-size10.clo
+File: j-size10.clo 2000/05/19 v1.4b Standard JLaTeX file (size option)
+ (c:/w32tex/share/texmf-dist/tex/jlatex/base/jresize10.clo)
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-size10.clo:101: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   z
+l.101   \setlength\parindent{1zw}
+                                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-size10.clo:101: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101   \setlength\parindent{1zw}
+                                 
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+
+Overfull \hbox (12.66667pt too wide) in paragraph at lines 101--289
+[]\OT1/cmr/m/n/10 zw
+ []
+
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:624: Text line contains an invalid character.
+l.624 \newcommand\contentsname{^^[
+                                  $BL\<!^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:624: Text line contains an invalid character.
+l.624 \newcommand\contentsname{^^[$BL\<!^^[
+                                           (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:625: Text line contains an invalid character.
+l.625 \newcommand\listfigurename{^^[
+                                    $B?^0lMw^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:625: Text line contains an invalid character.
+l.625 \newcommand\listfigurename{^^[$B?^0lMw^^[
+                                               (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:626: Text line contains an invalid character.
+l.626 \newcommand\listtablename{^^[
+                                   $BI=0lMw^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:626: Text line contains an invalid character.
+l.626 \newcommand\listtablename{^^[$BI=0lMw^^[
+                                              (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:627: Text line contains an invalid character.
+l.627 \newcommand\refname{^^[
+                             $B;29MJ88%^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:628: Text line contains an invalid character.
+l.628 \newcommand\indexname{^^[
+                               $B:w0z^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:628: Text line contains an invalid character.
+l.628 \newcommand\indexname{^^[$B:w0z^^[
+                                        (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:629: Text line contains an invalid character.
+l.629 \newcommand\figurename{^^[
+                                $B?^^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:629: Text line contains an invalid character.
+l.629 \newcommand\figurename{^^[$B?^^^[
+                                       (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:630: Text line contains an invalid character.
+l.630 \newcommand\tablename{^^[
+                               $BI=^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:630: Text line contains an invalid character.
+l.630 \newcommand\tablename{^^[$BI=^^[
+                                      (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:631: Text line contains an invalid character.
+l.631 \newcommand*\partname[1]{^^[
+                                  $BBh^^[(B #1 ^^[$BIt^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:631: Text line contains an invalid character.
+l.631 \newcommand*\partname[1]{^^[$BBh^^[
+                                         (B #1 ^^[$BIt^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:631: Text line contains an invalid character.
+l.631 \newcommand*\partname[1]{^^[$BBh^^[(B #1 ^^[
+                                                  $BIt^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:631: Text line contains an invalid character.
+l.631 ...d*\partname[1]{^^[$BBh^^[(B #1 ^^[$BIt^^[
+                                                  (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:632: Text line contains an invalid character.
+l.632 \newcommand\appendixname[1]{^^[
+                                     $BIUO?^^[(B #1}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:632: Text line contains an invalid character.
+l.632 \newcommand\appendixname[1]{^^[$BIUO?^^[
+                                              (B #1}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:633: Text line contains an invalid character.
+l.633 \newcommand\abstractname{^^[
+                                  $BMW;]^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:633: Text line contains an invalid character.
+l.633 \newcommand\abstractname{^^[$BMW;]^^[
+                                           (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 \newif\if^^[
+                  $B@>Nq^^[(B \def\^^[$B@>Nq^^[(B{\^^[$B@>Nq^^[(Btrue}\def\^...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 \newif\if^^[$B@>Nq^^[
+                           (B \def\^^[$B@>Nq^^[(B{\^^[$B@>Nq^^[(Btrue}\def\^...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 \newif\if^^[$B@>Nq^^[(B \def\^^[$B@>Nq^^[
+                                               (B{\^^[$B@>Nq^^[(Btrue}\def\^...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 ...Nq^^[(B \def\^^[$B@>Nq^^[(B{\^^[$B@>Nq^^[
+                                                  (Btrue}\def\^^[$B859f^^[(B...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 ...[(B{\^^[$B@>Nq^^[(Btrue}\def\^^[$B859f^^[
+                                                  (B{\^^[$B@>Nq^^[(Bfalse}\l...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 ...[(Btrue}\def\^^[$B859f^^[(B{\^^[$B@>Nq^^[
+                                                  (Bfalse}\let\^^[$BG/9f^^[(...
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 ...(B{\^^[$B@>Nq^^[(Bfalse}\let\^^[$BG/9f^^[
+                                                  (B\^^[$B859f^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:634: Text line contains an invalid character.
+l.634 ...[(Bfalse}\let\^^[$BG/9f^^[(B\^^[$B859f^^[
+                                                  (B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:635: Text line contains an invalid character.
+l.635 \^^[$B@>Nq^^[
+                   (B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:636: Text line contains an invalid character.
+l.636 \def\today{\if^^[
+                       $B@>Nq^^[(B\number\year
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:636: Text line contains an invalid character.
+l.636 \def\today{\if^^[$B@>Nq^^[
+                                (B\number\year
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:637: Text line contains an invalid character.
+l.637 ...\count255\year\advance\count255 -1988 ^^[
+                                                  $BJ?@.^^[(B%
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:637: Text line contains an invalid character.
+l.637 ...\year\advance\count255 -1988 ^^[$BJ?@.^^[
+                                                  (B%
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:638: Text line contains an invalid character.
+l.638 \ifnum\count255=1 ^^[
+                           $B85^^[(B\else\number\count255\fi}\fi
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:638: Text line contains an invalid character.
+l.638 \ifnum\count255=1 ^^[$B85^^[
+                                  (B\else\number\count255\fi}\fi
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ^^[
+         $BG/^^[(B \number\month ^^[$B7n^^[(B \number\day ^^[$BF|^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ^^[$BG/^^[
+                (B \number\month ^^[$B7n^^[(B \number\day ^^[$BF|^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ^^[$BG/^^[(B \number\month ^^[
+                                    $B7n^^[(B \number\day ^^[$BF|^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ^^[$BG/^^[(B \number\month ^^[$B7n^^[
+                                           (B \number\day ^^[$BF|^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ...number\month ^^[$B7n^^[(B \number\day ^^[
+                                                  $BF|^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/w32tex/share/texmf-dist/tex/jlatex/base/j-article.cls:639: Text line contains an invalid character.
+l.639 ...month ^^[$B7n^^[(B \number\day ^^[$BF|^^[
+                                                  (B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+)
+Runaway argument?
+{$B;29MJ88\newcommand \indexname {$B:w0z(B} \newcommand \figurename {\ETC.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:2: File ended while scanning use of \@argdef.
+<inserted text> 
+                \par 
+l.2     \usepackage
+                   [dvipdfmx]{graphicx}
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+(c:/w32tex/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (c:/w32tex/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 99.
+ (c:/w32tex/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+File: dvipdfmx.def 2017/06/24 v5.0g Graphics/color driver for dvipdfmx
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (c:/w32tex/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+ (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+) (c:/w32tex/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (c:/w32tex/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen105
+\Gm@wd@mp=\dimen106
+\Gm@odd@mp=\dimen107
+\Gm@even@mp=\dimen108
+\Gm@layoutwidth=\dimen109
+\Gm@layoutheight=\dimen110
+\Gm@layouthoffset=\dimen111
+\Gm@layoutvoffset=\dimen112
+\Gm@dimlist=\toks15
+ (c:/w32tex/share/texmf-dist/tex/latex/geometry/geometry.cfg)) (c:/w32tex/share/texmf-dist/tex/platex/base/ascmac.sty
+Package: ascmac 2017/07/22 v2.0d ascmac wrapper (community edition) 
+ (c:/w32tex/share/texmf-dist/tex/platex/base/tascmac.sty
+Package: tascmac 2017/07/22 v2.0d ascmac package (community edition) 
+Package tascmac Info: Assuming pdfLaTeX, XeLaTeX or LuaLaTeX on input line 44.
+{c:/w32tex/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
+\scb@x=\box26
+\scscb@x=\box27
+\@bw=\dimen113
+\@nbox=\box28
+\@nbody=\box29
+\@scw=\dimen114
+\@itemh=\dimen115
+\@iboxpos=\toks16
+\@iboxstr=\box30
+\@bwsp=\box31
+\@@bwsp=\box32
+\@bcal=\count90
+\shaderule=\dimen116
+)) (c:/w32tex/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen117
+\extrarowheight=\dimen118
+\NC@list=\toks17
+\extratabsurround=\skip43
+\backup@length=\skip44
+) (c:/w32tex/share/texmf-dist/tex/latex/here/here.sty) (c:/w32tex/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count91
+\float@exts=\toks18
+\float@box=\box33
+\@float@everytoks=\toks19
+\@floatcapt=\box34
+) (c:/w32tex/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count92
+\lst@gtempboxa=\box35
+\lst@token=\toks20
+\lst@length=\count93
+\lst@currlwidth=\dimen119
+\lst@column=\count94
+\lst@pos=\count95
+\lst@lostspace=\dimen120
+\lst@width=\dimen121
+\lst@newlines=\count96
+\lst@lineno=\count97
+\lst@maxwidth=\dimen122
+ (c:/w32tex/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count98
+\lst@skipnumbers=\count99
+\lst@framebox=\box36
+) (c:/w32tex/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty
+Package: jlisting 2006/02/20 0.2 (Thor)
+\lst@nextchar=\count100
+\lst@inputfile=\read1
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:138: Text line contains an invalid character.
+l.138 \def\lstlistingname{^^[
+                             $B%=!<%9%3!<%I^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:139: Text line contains an invalid character.
+l.139 \def\lstlistlistingname{^^[
+                                 $B%=!<%9%3!<%IL\<!^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:158: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.158 \def\email#1
+                  {\gdef\@email{\texttt{#1}}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:158: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.158 \def\email#1{\gdef\@email{\texttt{#1
+                                          }}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:159: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.159 \def\homepage#1
+                     {\gdef\@homepage{\texttt{#1}}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:159: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.159 \def\homepage#1{\gdef\@homepage{\texttt{#1
+                                                }}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:160: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.160 \def\mac#1
+                {\textsf{#1}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:160: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.160 \def\mac#1{\textsf{#1
+                           }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:161: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.161 \def\URL#1
+                {\texttt{#1}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:161: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.161 \def\URL#1{\texttt{#1
+                           }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:162: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.162 \def\src#1
+                {\texttt{#1}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:162: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.162 \def\src#1{\texttt{#1
+                           }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:190: Text line contains an invalid character.
+l.190 \section{^^[
+                  $B$A$g$C$H$7$?@bL@^^[(B}% Short Description
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:190: Text line contains an invalid character.
+l.190 \section{^^[$B$A$g$C$H$7$?@bL@^^[
+                                       (B}% Short Description
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:192: Text line contains an invalid character.
+l.192 ^^[
+         $B1|B<@2I';a$N7G<(HD$N!VHFMQE*$JIbF0BN!W$H$$$&0lO"$N=q$-9~$_$+$i^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:192: Text line contains an invalid character.
+l.192 ...MQE*$JIbF0BN!W$H$$$&0lO"$N=q$-9~$_$+$i^^[
+                                                  (B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:193: Text line contains an invalid character.
+l.193 ^^[
+         $BE>:\$7$^$7$?!#^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:193: Text line contains an invalid character.
+l.193 ^^[$BE>:\$7$^$7$?!#^^[
+                            (B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:193: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   (
+l.193 ^^[$BE>:\$7$^$7$?!#^^[(
+                             B
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:202: Text line contains an invalid character.
+l.202  Copyright ^^[
+                    $B$O5H1JE/H~;a$K$"$k$N$@$H;W$$$^$9!%^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:204: Text line contains an invalid character.
+l.204 \section{^^[
+                  $B99?7MzNr^^[(B}% ChageLogs
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:204: Text line contains an invalid character.
+l.204 \section{^^[$B99?7MzNr^^[
+                               (B}% ChageLogs
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:208: Text line contains an invalid character.
+l.208    ^^[
+            $B$H$j$"$($:8x3+!%^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:210: Text line contains an invalid character.
+l.210    \verb|\lst@breakProcessOther| ^^[
+                                          $BL?Na$NDj5A$NDI2C!%^^[(B
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/jlisting.sty:213: Text line contains an invalid character.
+l.213 \section{^^[
+                  $B%=!<%9%3!<%I^^[(B}
+A funny symbol that I can't read has just been input.
+Continue, and I'll forget that it ever happened.
+
+)
+Runaway definition?
+->$B\def \lstlistlistingname {$B\endinput \documentclass [papersize]{\ETC.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:10: File ended while scanning definition of \lstlistingname.
+<inserted text> 
+                }
+l.10     \renewcommand
+                      {\lstlistingname}{繝ｪ繧ｹ繝�}
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:27: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.27 \def\id#1
+              {\def\@id{#1}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:27: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.27 \def\id#1{\def\@id{#1
+                          }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.28 \def\department#1
+                      {\def\@department{#1}}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   1
+l.28 \def\department#1{\def\@department{#1
+                                          }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+)
+Runaway definition?
+->$B\def \lstlistlistingname {$B\endinput \documentclass [papersize]{\ETC.
+! File ended while scanning definition of \lstlistingname.
+<inserted text> 
+                }
+<*> ...ュメント/学校/4年/proen/clock/repo/repo.tex
+                                                  
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Emergency stop.
+<*> ...ュメント/学校/4年/proen/clock/repo/repo.tex
+                                                  
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 2550 strings out of 492990
+ 36133 string characters out of 6134929
+ 96252 words of memory out of 5000000
+ 6114 multiletter control sequences out of 15000+600000
+ 3736 words of font info for 15 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 27i,0n,32p,319b,219s stack positions out of 5000i,500n,10000p,500000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
