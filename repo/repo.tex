@@ -105,13 +105,14 @@
          \end{figure}
 
          　このアプリでは次に示すものを画面に描画する.アナログ時計の縁は内側と外側があり,回転している.
-         回転方向は外側が時計回り,内側が反時計周りである.また,レポートでは伝わらないが,ライトモードとダークモードでは画面に描画している
-         アナログ時計および文字列の色が異なる.表\ref{color}に2つのモードにおける色の設定を示す.
+         回転方向は外側が時計回り,内側が反時計周りである.
          \begin{itemize}
-           \item アナログ時計
-           \item アナログ時計の縁
-           \item 年,月,日,曜日,時,分,秒の文字列 
-         \end{itemize}
+          \item アナログ時計
+          \item アナログ時計の縁
+          \item 年,月,日,曜日,時,分,秒の文字列 
+        \end{itemize}
+         　また,レポートでは伝わらないが,ライトモードとダークモードでは画面に描画している
+         アナログ時計および文字列の色が異なる.表\ref{color}に2つのモードにおける色の設定を示す.
 
          \begin{table}[H]
           \caption{色の設定}
@@ -139,22 +140,22 @@
       \item ウィンドウのリサイズへの対応
       \item タイマーを用いた時間の更新
       \item マウス入力の制御
-      \item 画面描画の制御
-      \item アナログ時計のインデックス,文字盤を表示する機能
       \item アナログ時計の針を表示する機能
-      \item 年,月,日,曜日,時,分,秒の文字列を表示する機能 
+      \item アナログ時計のインデックス,文字盤を表示する機能
+      \item 年,月,日,曜日,時,分,秒の文字列を表示する機能
+      \item 時計の縁が回転する機能 
     \end{itemize}
 
     \subsection{ヘッダファイルの記述,オブジェクト形式マクロの宣言}
-    プログラムの実行に必要なヘッダファイルの記述,および必要なマクロを定義する.リスト\ref{}に
+    プログラムの実行に必要なヘッダファイルの記述,および必要なマクロを定義する.リスト\ref{include}に
     ヘッダファイルの記述,および必要なマクロを定義したコードを示す.glut.hがc言語でOpenGLを扱う
     ためのライブラリである.また,time.hは時間の取得を行うためのライブラリである.\\
     　本アプリではウィンドウサイズは320$\times$320に固定する.このため,リスト\ref{include}の8行目
     および9行目ではウィンドウのサイズを定義している.\\
     　リスト\ref{include}1行目から13行目行目ではグローバル変数の定義を行っている.変数dispModeは
     ライトモード,ダークモードの管理を行うための変数である.dispModeが1のときライトモード,0のとき
-    ダークモードである.変数loop1,loop2はアナログ時計の縁を回転させるための変数である.
-    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=include,caption=定数,変数の定義]
+    ダークモードである.dispModeのデフォルト値はライトモードなっている.変数loop1,loop2はアナログ時計の縁を回転させるための変数である.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=include,caption=定数および変数の定義]
 #include<GL/glut.h>
 #include<stdio.h>
 #include<time.h>
@@ -171,7 +172,7 @@ double loop2=0; //use for design rotation
                   \end{lstlisting}
 
   \subsection{初期化設定}
-  メイン関数では全体の初期化および設定を行う.
+  メイン関数では全体の初期化および設定を行う.リスト\ref{main}にメイン関数のコードを示す.
   \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main,caption=main関数]
 int main(int argc,char **argv){
 // 初期化処理
@@ -188,17 +189,222 @@ int main(int argc,char **argv){
     glutTimerFunc(500,Timer,0);
     // display初期化
     glutInitDisplayMode(GLUT_RGBA);
-    if(dispMode){ // darkmodeのとき
-        glClearColor(0.15,0.15,0.15,1.0);
-    }else{ // lightmodeのとき
-        glClearColor(0.96,0.96,1.0,1.0);
-    }
+    glClearColor(0.96,0.96,1.0,1.0);
     // メインループ
     glutMainLoop();
     return 0;
 }
   \end{lstlisting}   
+  メイン関数の処理の説明を次に示す.
+  \begin{enumerate}
+    \item 引数の処理をglutInit関数で行う.本アプリでは引数は使用しないから,ここではglutInit関数に形式的に引数を渡している
+    だけである(リスト\ref{main}の4行目).
+    \item 最初に開くウィンドウのサイズを指定する.ウィンドウのサイズの初期設定はglutInitWindowSize関数で行う.glutInitWindowSize関数の
+    引数は(横幅,縦幅)である.ここでは,オブジェクト形式マクロで定義したWINDOW\_Wを横幅,WINDOW\_Hを縦幅とする(リスト\ref{main}の6行目).
+    \item 開くウィンドウのサイズが決まったから,ウィンドウを生成する.ウィンドウの生成はglutCreateWindow関数で行う.glutCreateWindow関数の引数
+    として渡している文字列は図\ref{clock}において,ウィンドウの左上に表示されている文字列である.リスト\ref{main}の8行目では「clock」という文字列
+    をglutCreateWindow関数に渡しているから図\ref{clock}のウィンドウの左上には「clock」と表示されている.
+    \item リスト\ref{main}の10行目から13行目はイベントによって呼び出される関数を定義している.本アプリにおいて,イベント(例としてユーザーからの入力やタイマーによる時間経過)
+    はループを用いて逐一見張っている仕組みではない.本アプリのイベントに対する仕組みは,普段は何もせず,イベントが起こったときにそれに応じた処理を行うものである.
+    このような仕組みをイベント駆動型プログラミングという.また,呼び出される関数をコールバック関数という.リスト\ref{main}では4つイベントに対してコールバック関数を設定している.
+    それぞれのコールバックの呼び出されるイベントと処理内容の概要を次に示す.
+    \begin{itemize}
+      \item glutDisplayFunc $\dots$ ウィンドウの表示内容を更新するDisplay関数を呼び出す.
+      \item glutReshapeFunc $\dots$ ウィンドウのサイズが変更されたときに,座標系およびウィンドウのサイズに関する設定するReshape関数を呼び出す.
+      \item glutMouseFunc $\dots$ マウスの移動やクリックが発生したときに,マウスの移動やクリックに対する処理を行うMouse関数を呼び出す.
+      \item glutTimerFunc $\dots$ 第一引数の時間(ミリ秒)が経過したときに,タイマーの処理を行うTimer関数を呼び出す.
+    \end{itemize}
+    \item リスト\ref{main}の15行目から16行目では生成したウィンドウに初期の背景を描画する処理を行っている.glutInitDisplayMode関数は色の指定を
+    どのように行うかを設定している.ここでは色をRGBA,つまり赤(Red),緑(Green),青(Blue),透明度(Alpha)の4つの変数で指定する設定を行っている.そして
+    glClearColor関数で初期の背景を描画する処理を行っている.注意として,glClearColor関数の引数は0から1までの値で色を指定する.ここでは,すべての値が
+    ほぼ1であるため,白に近い色が描画される.
+    \item 初期設定が終了したから,メインのループに入る関数であるglutMainLoop関数を実行する.
+  \end{enumerate}
 
+  \subsection{ウィンドウのリサイズへの対応}
+  ウィンドウのリサイズへの対応について,仕様とプログラムでの実装部分を説明する.本アプリではウィンドウのリサイズを行っても,
+  元のサイズ(320$\times$320)に戻される仕様になっている.これには2つの理由がある.1つ目は,アナログ時計を描画する部分において,
+  ウィンドウのサイズに応じてアナログ時計の大きさを変化させるときに,中心からの距離の指定が複雑になることを防ぐためである.
+  2つ目は,文字列を表示している関数は自由に拡大縮小ができないため,画面の大きさに対して不格好な描画になってしまうためである.\\
+  　ウィンドウのサイズ変更イベントの処理を行う関数はReshape関数であった.リスト\ref{reshape}にReshape関数のコードを示す.
+  リスト\ref{reshape}において,Reshape関数の引数は新しいウィンドウの幅,高さhである.
+  \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=reshape,caption=Reshape関数]
+void Reshape(int w,int h){
+    //printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
+    glViewport(0,0,w,h);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluOrtho2D(0,w,0,h);
+    glScaled(1,-1,1);
+    glTranslated(0,-h,0);
+
+    //windowサイズ固定 
+    glutReshapeWindow(WINDOW_W,WINDOW_H);
+}    
+      \end{lstlisting} 
+      　Reshape関数の処理内容について説明する.ウィンドウの座標系はウィンドウを更新するたびに初期設定に戻ってしまう.ウィンドウの初期設定における
+        座標系を図\ref{initzahyou}に示す.図\ref{initzahyou}の座標系では描画する図形の頂点の値を実数で与えないといけない
+        ため,扱いにくい.そこで図\ref{generalzahyou}に示す座標系に設定しなおす.リスト\ref{reshape}の2行目から8行目では,
+        図\ref{initzahyou}の座標系を,リスト\ref{generalzahyou}の座標系にする設定を行っている.\\
+        　ウィンドウサイズの固定はリスト\ref{reshape}の11行目で行っている.glutReshapeWindow関数にウィンドウの
+        幅,高さを引数として渡すことで内部でウィンドウのリサイズを行うことができる.
+
+        \begin{figure}[H]
+          \begin{minipage}{0.5\hsize}
+           \begin{center}
+            \includegraphics[scale=0.6]{czahyou.eps}
+           \end{center}
+           \subcaption{初期設定の座標系}
+           \label{initzahyou}
+          \end{minipage}
+          \begin{minipage}{0.5\hsize}
+           \begin{center}
+            \includegraphics[scale=0.6]{zahyou.eps}
+           \end{center}
+           \subcaption{変換後の座標系}
+           \label{generalzahyou}
+          \end{minipage}
+          \caption{座標系の設定}
+          \label{zahyou}
+         \end{figure}
+
+    \subsection{タイマーを用いた画面描画の更新}
+    タイマーによって一定時間おきに画面描画を更新する仕組みについて説明する.実装したいことは
+    タイマーによって一定おきにイベントが発生することと,画面描画を更新することに切り分けられる.
+    本節では,前者のタイマーによって一定おきにイベントが発生する仕組みについて説明する.後者は
+    ここでは,画面描画を更新するDisplay関数がうまくやってくれると考える.\\
+    　第一引数の時間(ミリ秒)が経過したときに,タイマーの処理を行う関数はTimer関数であった.Timer関数の
+    コードをリスト\ref{timer}に示す.Timer関数はメイン関数(リスト\ref{main})の13行目に呼ばれる.
+    ここでは500ミリ秒経過後にリスト\ref{timer}のTimer関数が呼ばれる設定になっている.\\
+    　Timer関数の処理内容は,まず2行目でディスプレイの表示内容を更新するためのイベントを発生させるglutPostRedisplay
+    関数が実行される.これによってdisplay関数が呼び出されて画面表示が更新される.次に,glutTimerFuncを
+    再度実行する(リスト\ref{timer}の3行目).glutTimerFunc関数に登録されたタイマーは1度しか実行されないため,反復的に
+    タイマーを利用するためにはイベントの設定を再度行う必要がある.
+    
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=timer,caption=Timer関数]
+void Timer(int value){
+    glutPostRedisplay();
+    glutTimerFunc(500,Timer,0);
+}
+            \end{lstlisting} 
+
+    \subsection{マウス入力の制御}
+    マウスの左クリックによってライトモードとダークモードが切り替わる仕組みについて説明する.
+    マウスの移動やクリックが発生したときに,その動作に対する処理を行う関数はMouse関数であった.
+    Mouse関数のコードをリスト\ref{mouse}に示す.Mouse関数の引数は,クリックされたボタンを示すb,
+    ボタンの状態(押されたのか,離されたのか)を示すs,ボタンの座標(x,y)の4つである.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=mouse,caption=Mouse関数]
+void Mouse(int b,int s,int x,int y){
+    if(b==GLUT_LEFT_BUTTON){
+        if(s==GLUT_UP){
+            if(dispMode==1){
+                dispMode=0;
+            }else{
+                dispMode=1;
+            }
+        }
+        if(dispMode){
+            glClearColor(0.15,0.15,0.15,1.0);
+        }else{
+            glClearColor(0.96,0.96,1.0,1.0);
+        }
+    }
+}
+            \end{lstlisting}
+      　Mouse関数の処理内容について説明する.リスト\ref{mouse}の2行目から9行目では左クリックがされたときに
+      dispModeを切り替える処理を行っている.リスト\ref{mouse}の2行目のif文で,イベントが起きたボタンが「左ボタン」であること
+      を判定し,3行目のif文でボタンが「離された」ことを判定している.このように,マウスイベントの判定は,「左ボタンがクリックされたか」
+      という事象を,イベントがあったボタンの種類,押されたのか離されたのか,という2つに分解して判定している.
+      そして,5行目から8行目で2つのモードの切り替えを行っている.\\
+      　リスト\ref{mouse}の10行目から14行目ではdispModeの変更に伴って,背景色を変更したいから,glClearColor関数を実行する処理を行っている.
+
+    \subsection{アナログ時計の針を表示する機能}
+    画面表示を行う関数としてDisplay関数を作成し,次の機能を実装する.Display関数の設計として,画面に表示する順番がある.
+    アナログ時計の描画において,最も最前面に描画するべき情報は時計の針である.次に,時計のインデックス,文字盤,
+    年月日に関する文字列の3つが同程度に重要である.時計の縁はデザイン性を高めるためのものであるから最も重要度が低い.
+    したがって,フロー処理においてこれらを描画する順番は箇条書きの順番と一致する.Display関数における4つの機能の実装
+    プログラムの説明は,プログラムの必要な部分を抜粋して行う.このため描画する順番がわかりずらい.プログラムソース全体
+    は付録!に載っているから,描画の順番は付録!の!を参照してほしい.
+    \begin{enumerate}
+      \item 時計の縁が回転する機能 
+      \item 年,月,日,曜日,時,分,秒の文字列を表示する機能
+      \item アナログ時計のインデックス,文字盤を表示する機能
+      \item 時計の針を描画する機能 
+    \end{enumerate}
+
+    　アナログ時計の針を表示する機能について解説する.アナログ時計の「針を表示する機能」を実装するコードを抜粋したものを
+    リスト\ref{display1}に示す.リスト\ref{display1}にはDisplay関数,calPosition関数,drawLine関数の3つの関数がある.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=display1,caption=針の描画の実装]
+void Display(void){
+    int i; //ループ用
+    char *timestr; // 時間情報表示用文字列    
+    // 画面サイズ取得
+    int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
+    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2+30; // y軸方向の中心は30ずらす.
+
+    // 針の角度
+    double thetas,thetam,thetah;
+    // 針の座標
+    int xs,ys,xm,ym,xh,yh;
+    // 針の長さ
+    int ls=80;
+    int lm = 105;
+    int lh = 90; 
+
+    // 描画クリア
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+// 時間取得
+    time_t tt;
+    struct tm *ts;
+    time(&tt);
+    ts = localtime(&tt);
+
+// 針の角度,座標を計算
+    thetas = 2*M_PI*ts->tm_sec/60;
+    thetam = 2*M_PI*(60*ts->tm_min+ts->tm_sec)/3600;
+    thetah = 2*M_PI*(3600*(ts->tm_hour%12)+60*ts->tm_min+ts->tm_sec)/43200;
+    calPosition(&xs,&ys,xc,yc,ls,thetas);
+    calPosition(&xm,&ym,xc,yc,lm,thetam);
+    calPosition(&xh,&yh,xc,yc,lh,thetah);
+
+// 針を描画
+    //時針描画
+    if(dispMode){
+    glColor3ub(255,255,255);
+    }else{
+    glColor3ub(0,0,0);
+    }
+    glLineWidth(5.0);
+    drawLine(xc,yc,xh,yh);
+    //分針描画
+    glLineWidth(3.0);
+    drawLine(xc,yc,xm,ym);
+    //秒針描画
+    glLineWidth(2.0);
+    glColor3ub(255,0,0);
+    drawLine(xc,yc,xs,ys);
+
+    glFlush();
+}
+
+// 極座標と直交座標を変換
+//極座標(r,theta)を(xc,yc)を原点とした直交座標(x,y)に変換
+void calPosition(int *x,int *y,int xc,int yc,int r,double theta){
+    *x = xc+r*sin(theta);
+    *y = yc-r*cos(theta);
+}
+
+// lineを描画
+//(x1,y1)と(x2,y2)を結ぶ直線を描画
+void drawLine(int x1,int y1,int x2,int y2){
+    glBegin(GL_LINES);
+    glVertex2i(x1,y1);
+    glVertex2i(x2,y2);
+    glEnd();
+};
+            \end{lstlisting}
+            
     \section{ビルド方法の説明}
     \section{実行結果とその説明}
 

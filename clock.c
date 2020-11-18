@@ -36,11 +36,7 @@ int main(int argc,char **argv){
     glutTimerFunc(500,Timer,0);
     // display初期化
     glutInitDisplayMode(GLUT_RGBA);
-    if(dispMode){ // darkmodeのとき
-        glClearColor(0.15,0.15,0.15,1.0);
-    }else{ // lightmodeのとき
-        glClearColor(0.96,0.96,1.0,1.0);
-    }
+    glClearColor(0.96,0.96,1.0,1.0);
     // メインループ
     glutMainLoop();
     return 0;
@@ -282,7 +278,6 @@ void Reshape(int w,int h){
 
     //windowサイズ固定 
     glutReshapeWindow(WINDOW_W,WINDOW_H);
-
 }
 
 // タイマーの処理
