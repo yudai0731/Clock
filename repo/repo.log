@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.30)  17 NOV 2020 10:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.30)  18 NOV 2020 07:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -610,45 +610,108 @@ Runaway definition?
 c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:10: File ended while scanning definition of \lstlistingname.
 <inserted text> 
                 }
-l.10     \renewcommand
-                      {\lstlistingname}{繝ｪ繧ｹ繝�}
+l.10     \usepackage
+                    [subrefformat=parens]{subcaption}
 I suspect you have forgotten a `}', causing me
 to read past where you wanted me to stop.
 I'll try to recover; but if the error is serious,
 you'd better type `E' or `X' now and fix your file.
 
-c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:27: Illegal parameter number in definition of \lstlistingname.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
 <to be read again> 
                    1
-l.27 \def\id#1
+l.28 \def\id#1
               {\def\@id{#1}}
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:27: Illegal parameter number in definition of \lstlistingname.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
 <to be read again> 
                    1
-l.27 \def\id#1{\def\@id{#1
+l.28 \def\id#1{\def\@id{#1
                           }}
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:29: Illegal parameter number in definition of \lstlistingname.
 <to be read again> 
                    1
-l.28 \def\department#1
+l.29 \def\department#1
                       {\def\@department{#1}}
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:28: Illegal parameter number in definition of \lstlistingname.
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:29: Illegal parameter number in definition of \lstlistingname.
 <to be read again> 
                    1
-l.28 \def\department#1{\def\@department{#1
+l.29 \def\department#1{\def\@department{#1
                                           }}
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:158: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   i
+l.158 #i
+        nclude<GL/glut.h>
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:159: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   i
+l.159 #i
+        nclude<stdio.h>
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:160: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   i
+l.160 #i
+        nclude<time.h>
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:161: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   i
+l.161 #i
+        nclude<math.h>
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:162: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   i
+l.162 #i
+        nclude<string.h>
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:165: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   d
+l.165 #d
+        efine WINDOW_W 320
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+c:/Users/yudai/OneDrive/ドキュメント/学校/4年/proen/clock/repo/repo.tex:166: Illegal parameter number in definition of \lstlistingname.
+<to be read again> 
+                   d
+l.166 #d
+        efine WINDOW_H 320
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
@@ -673,10 +736,10 @@ you'd better type `E' or `X' now and fix your file.
 
  
 Here is how much of TeX's memory you used:
- 2550 strings out of 492990
- 36133 string characters out of 6134929
- 96252 words of memory out of 5000000
- 6114 multiletter control sequences out of 15000+600000
+ 2551 strings out of 492990
+ 36143 string characters out of 6134929
+ 102095 words of memory out of 5000000
+ 6115 multiletter control sequences out of 15000+600000
  3736 words of font info for 15 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  27i,0n,32p,319b,219s stack positions out of 5000i,500n,10000p,500000b,80000s
