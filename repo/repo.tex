@@ -405,23 +405,146 @@ void drawLine(int x1,int y1,int x2,int y2){
 };
             \end{lstlisting}
     
-            Display関数の処理の内容を次に示す.        
-            \begin{enumerate}
-              \item ウィンドウの中央の座標を取得して変数xc,xyに代入する.このプログラムはリスト\ref{display1}
-              の5行目および6行目で実装している.ウィンドウの取得はglutGet関数で行っている.
+            Display関数の処理の内容を説明する.     
+            リスト\ref{display1}の5行目および6行目では,ウィンドウの中央の座標を取得して変数xc,xyに代入している.
               glutGet関数はウィンドウや画面の情報を取得するための関数で,引数として「GLUT\_WINDOW\_WIDTH」を与えるとウィンドウの
               幅の情報が戻り値として得られる.同様に引数として「GLUT\_WINDOW\_HEIGHT」を与えることで,ウィンドウの高さの情報
-              が取得できる.\\
-              　そして取得した値を2で割ることで,画面の中央の座標を得ることができる.6行目でycの値に30を足しているのは,画面中央を基準に時計を描画すると,文字列を表示する
-              場所が狭くなってしまうためである.ycに30を足すことで,時計の中心をy軸方向30pixel下に移動している.
-              \item リスト\ref{display1}の9行目から15行目では秒針,分針,時針の3つの描画位置を計算するための変数を定義している.
-              \item リスト\ref{display1}の18行目で,画面表示をクリアな状態にするglClear関数を実行している.引数として
+              が取得できる.そして取得した値を2で割ることで,画面の中央の座標を得ることができる.6行目でycの値に30を足しているのは,
+              画面中央を基準に時計を描画すると,文字列を表示する場所が狭くなってしまうためである.ycに30を足すことで,
+              時計の中心をy軸方向30pixel下に移動している.\\
+              　リスト\ref{display1}の9行目から15行目では秒針,分針,時針の3つの描画位置を計算するための変数を定義している.\\
+              　リスト\ref{display1}の18行目では,画面表示をクリアな状態にするglClear関数を実行している.引数として
               与えている「GL\_COLOR\_BUFFER\_BIT」はカラーバッファとよばれる色情報を格納するメモリのことで,これを
-              塗りつぶすことで,画面表示をクリアしている.
-              \item 時計を作成するために,時間の取得を行う.「time.h」の関数を用いるため,リスト\ref{include}の3行目で「time.h」を
-              読み込む必要がある.時間の取得はtime\_t型の変数をtime関数にわたすことで取得することができる.し
+              塗りつぶすことで,画面表示をクリアしている.\\
+              　時計を作成するために,時間の取得を行う.時間の取得を行っている部分はリスト\ref{display1}の21行目から
+              24行目である.「time.h」の関数を用いるため,リスト\ref{include}の3行目で「time.h」を
+              読み込んでいる.時間の取得はtime\_t型の変数をtime関数にわたすことで取得することができる.\\
+              　我々がほしい情報は現在時刻はtm構造体が保持しているため,time\_t型から変換を行う必要がある.この変換
+              を行っているのが,リスト\ref{display1}の24行目である.tm構造体の構造はリスト\ref{tm}のようになっている.
+              現在時間の情報の取得方法の例として,日付の情報がほしい場合は「ts-$>$tm\_mday」と記述することで取得できる.
+              他の情報の取得方法もリスト\ref{tm}を参考に取得できる.
 
-            \end{enumerate} 
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=tm,caption=tm構造体]
+struct tm{
+  int tm_sec; // 秒(0~60). 60は閏秒対応のため
+  int tm_min; // 分(0~59).
+  int tm_hour; // 時間(0~23).
+  int tm_mday; // 日(1~31).
+  int tm_mon; // 1月からの通算月数(0~11).
+  int tm_year; // 1900年からの通算年数.
+  int tm_wday; // 曜日(0~6).0が日曜日で6が土曜日.
+  int tm_yday; // 1月1日からの通算日数(0~365).
+  int tm_isdst; // 夏時間が有効かどうかのフラグ.
+}
+            \end{lstlisting}
+
+            　時間の取得ができたから,アナログ時計の針の角度および座標を計算する.リスト\ref{display1}では27行目から32行目である.
+            27行目から29行目ではそれぞれの針の角度を計算している.角度は図\ref{tokei}に示すように時計の12時の位置を0度としている.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.6]{tokei.eps}
+      \caption{時計の針の角度}
+       \label{tokei}
+      \end{figure}
+
+      　時刻h時m分s秒のときの秒針の角度$\theta_s$は式(\ref{thetas})で与えられる.同様に分針の角度$\theta_m$は式(\ref{thetam}),
+      分針の角度$\theta_h$は式(\ref{thetah})で計算できる.
+          \begin{eqnarray}
+            \label{thetas}
+      \theta_s &=& \frac{2\pi s}{60}  \\
+            \label{thetam}
+      \theta_m &=& \frac{2\pi(60m+s)}{3600}  \\
+            \label{thetah}
+      \theta_h &=& \frac{2\pi(2600h+60m+s)}{43200}
+        \end{eqnarray}
+
+        角度が計算できたから,中心からの距離と角度の情報をもとに,針先の座標を計算する.針先の座標の計算はリスト\ref{display1}の
+        30行目から32行目に示すようにcalPosition関数で行っている.calPosition関数の定義はリスト\ref{display1}の56行目から59行目
+        にある.calPosition関数は,針先の座標を格納する変数x,yのポインタ,中心座標(xc,yc),中心からの距離r,角度thetaの6つを引数とし
+        ている.計算結果は戻り値ではなくx,yに代入される.極座標($r$,$\theta$)から直交座標($x$,$y$)の変換は式(\ref{posix})および
+        式(\ref{posiy})でできる.
+
+        \begin{eqnarray}
+          \label{posix}
+    x &=& x_c + l \sin \theta  \\
+          \label{posiy}
+    y &=& y_c - l \cos \theta
+      \end{eqnarray}
+        
+      針の座標が計算できたから,描画を行う.プログラムではリスト\ref{display1}の36行目から49行目である.36行目から40行目では,
+      針の色の設定を行っている.まず,表示モードで色の場合分けがあるため,if文でdispModeでどちらのモードかを判定し,処理を分岐させる.\\
+      　そして,glColor3ub関数で色の設定で行う.glColor3ub関数は引数として(R,G,B)の情報を0から255の整数で与えることで色の設定が行われる.
+      設定は再度glColor3ub関数で違う色に設定するまで有効である.ダークモード(dispMode=1)のとき,針の色を(255,255,255),つまり白に設定している.
+      ライトモード(dispMode=0)のときは,針の色を(0,0,0),つまり黒に設定している.このため,図\ref{clock}に示したように,時針と分針が
+      ライトモードのときは黒,ダークモードのときは白で表示される.秒針が赤で描画されているのは,48行目でglColor3ub関数を呼び出して,
+      色を(255,0,0),つまり赤に設定してから秒針を描画しているからである.\\
+      　色の設定ができたから,線の太さの設定を行う.プログラムでは41,44,47行目である.41行目では,時針の太さをglLineWidth関数で設定している.
+      glLineWidth関数は引数に太さを数値で与えると,値に応じた太さで線が描画させる.同様に,44行目で分針,47行目で秒針の太さを設定している.
+      図\ref{clock}を見ると,それぞれの針で太さが変わっていることがわかる.\\
+      　時針の描画は42行目,分針の描画は44行目,秒針の描画は49行目で行っている.針の描画を行う関数はdrawLine関数である.drawLine関数は
+      リスト\ref{clock}の63行目から68行目で定義している.drawLine関数は引数として2点の座標(x1,y1),(x2,y2)を与えると,この2点を
+      結ぶ線を描画する機能をもつ.線を結ぶ方法は64行目のglBegin関数で画面描画を行うことを宣言する.67行目のglEnd関数はglBegin関数と
+      対になる関数である.直線を描くための点はglVertex2i関数で指定する.65および66行目のように,glVertex2i関数に座標をわたすことで
+      直線を描くための点を指定できる.そして,glBegin関数に「GL\_LINES」を引数として指定することで直線を描くことができる.\\
+      　ここまでで描画した内容はキューにためられているだけで,まだ描画されていない.このキューの内容を実行して画面に反映させる関数が
+      リスト\ref{clock}の51行目のglFlush関数である.
+
+    \subsection{アナログ時計のインデックス,文字盤を表示する機能}
+    アナログ時計のインデックスおよび文字盤を表示する機能の実装について説明する.
+
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=indexstr,caption=インデックスと文字盤の実装]
+void Display(void){
+  // インデックス描画用
+  double l,theta; 
+  int x1,x2,y1,y2;
+  char s[3];
+
+  // ---中略---
+
+  // インデックス描画
+  for(i=1;i<=60;i++){
+      if(dispMode){
+        glColor3ub(255,255,255);
+      }else{
+        glColor3ub(0,0,0);
+      }
+      glLineWidth(2.0);
+      l=100; // インデックスの先端を長さ110にする
+      if(i%5==0){  // 5の倍数の針は長くする
+      l = 90; // インデックスの終端を長さ90にする
+      }
+      theta = 2*M_PI*i/60;
+      calPosition(&x1,&y1,xc,yc,l,theta);
+      l = 110;
+      calPosition(&x2,&y2,xc,yc,l,theta);
+      drawLine(x1,y1,x2,y2);
+
+
+      if(dispMode){
+        glColor3ub(255,255,255);
+      }else{
+        glColor3ub(0,0,0);
+      }
+      if(i%5==0){ // 5の倍数のとき文字を表示
+          sprintf(s,"%d",i/5);
+          l =80; // 文字表示位置を80にする
+          calPosition(&x2,&y2,xc,yc,l,theta);
+          if(i/5<10){ // 一桁表示用
+              glRasterPos2i(x2-5,y2+5);
+              glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+
+          }else{ // 二桁表示用
+              glRasterPos2i(x2-14,y2+5);
+              glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+              glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
+          }
+      }
+  }
+}
+
+
+    \end{lstlisting}
+
     \section{ビルド方法の説明}
     \section{実行結果とその説明}
 
