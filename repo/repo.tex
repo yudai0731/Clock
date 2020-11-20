@@ -808,18 +808,74 @@ void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
     \section{ビルド方法の説明}
     ビルド方法について説明する.まず,ダウンロードした「j17406.tar.gz」を解凍する.解凍は次のコマンドで行う.
   \begin{screen}
-    gzip -dv j17406.tar.gz
-  \end{screen}
-  　解凍できたかどうかは次のコマンドで見ることができる.
-  \begin{screen}
+    gzip -dv j17406.tar.gz \\
     tar xvf j17406.tar
   \end{screen}
-  解凍が行えたからビルドを行う.解凍したファイルは次のような構造になっている.
-    \section{実行結果とその説明}
+  　解凍ができたからビルドを行う.解凍したファイルは次のような構造になっている.
+  \begin{screen}
+j17406 \\
+├── Makefile \\
+├── j17406.c \\
+├── myicon.o \\
+├── myicon.rc \\
+├── readme.txt \\
+└── smalltile.ico 
+  \end{screen}
+  　ビルドは次のコマンドで行う.「make」のみでコンパイルが終わる仕組みを説明する.
+  ファイルの中にはmakeでビルドを行うためのMakefileが用意されている.
+  Makefileのコードをリスト\ref{make}に示す.
+  \begin{screen}
+make
+  \end{screen}
+  リスト\ref{make}の6行目は最終的に出来上がるファイルを指定している.ここではj17406.exeという
+  ファイルが出来上がる.9行目ではコンパイルするファイルを指定している.コンパイルするファイルはj17406.c
+  であるからこれを指定する.18行目から22行目では,コンパイラ,リンカの指定,およびコンパイルオプションの指定
+  を行っている.これらの設定をMakefileに書いておくことで,「make」と入力するだけでコンパイルが行われる.\\
+  　36,37行目ではmakeコマンドにオプションをつけ「make clean」としたときの処理を記述している.
+  「make clean」を実行すると,makeを実行したときに生成される「.o」といったファイルが削除される.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=make,caption=Makefile]
+#
+# Makefile
+#
 
+# 最終目的ファイル
+TARGET = j17406.exe
+
+# ソースファイル一覧(*.c)の一覧
+SRCS = j17406.c
+
+# オブジェクトファイル一覧(*.o)
+OBJS = ${SRCS:.c=.o}
+
+# ヘッダファイルの一覧(何もなし)
+HEADERS = 
+
+# コンパイラ・リンカの指定
+CC = gcc
+CCFLAGS = -Wall -I/usr/include/opengl
+LD = gcc
+LDFLAGS =
+LIBS = -lglpng -lglut32 -lglu32 -lopengl32 -lm myicon.o
+
+#OBJSからTARGETを作る方法
+$(TARGET) : $(OBJS)
+	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
+
+# *.cから*.oを作る方法
+.c.o:
+	$(CC) $(CCFLAGS) -c $<
+
+# *.oはHEADERSとMakefileに依存
+$(OBJS) : $(HEADERS) Makefile
+
+# make cleanとしたときに実行されるコマンド
+clean :
+	rm -f $(TARGET) $(OBJS) core *~
+            \end{lstlisting}
+
+    \section{実行結果とその説明}
+    本章では,次に示す実行結果およびその説明について述べる.
+    
     !付録
-        \begin{thebibliography}{9}
-          \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
-          \end{thebibliography}
 \end{document}
 
