@@ -1,6 +1,6 @@
 \documentclass[a4j]{jarticle}
     \usepackage[dvipdfmx]{graphicx}
-    \usepackage[ top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]
+    \usepackage[ top=25truemm,bottom=37truemm,left=25truemm,right=25truemm]
     {geometry}
     \usepackage{ascmac}
     \usepackage{array}
@@ -56,7 +56,8 @@
     \clearpage
     \addtocounter{page}{-1}
     \section{目的}
-    後期のプログラミング演習で学習した内容の理解度を確認するためにアナログ時計のアプリケーションを作成する.
+    後期のプログラミング演習で学習した内容の理解度を確認するために,アナログ時計のアプリケーションを作成することを
+    目的とする.
 
     \section{実行環境}
     実行環境を\ref{env}に示す.gccとは「GNU Compiler Collection」の略称で,GNUプロジェクトが公開しているコンパイラのことである.
@@ -490,8 +491,8 @@ struct tm{
       リスト\ref{clock}の51行目のglFlush関数である.
 
     \subsection{アナログ時計のインデックス,文字盤を表示する機能}
-    アナログ時計のインデックスおよび文字盤を表示する機能の実装について説明する.
-
+    アナログ時計のインデックス(目盛り)および文字盤を表示する機能の実装について説明する.リスト\ref{indexstr}に
+    インデックスおよび文字盤を表示するコードを示す.\\
     \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=indexstr,caption=インデックスと文字盤の実装]
 void Display(void){
   // インデックス描画用
@@ -509,7 +510,7 @@ void Display(void){
         glColor3ub(0,0,0);
       }
       glLineWidth(2.0);
-      l=100; // インデックスの先端を長さ110にする
+      l=100; // インデックスの先端を長さ100にする
       if(i%5==0){  // 5の倍数の針は長くする
       l = 90; // インデックスの終端を長さ90にする
       }
@@ -519,12 +520,6 @@ void Display(void){
       calPosition(&x2,&y2,xc,yc,l,theta);
       drawLine(x1,y1,x2,y2);
 
-
-      if(dispMode){
-        glColor3ub(255,255,255);
-      }else{
-        glColor3ub(0,0,0);
-      }
       if(i%5==0){ // 5の倍数のとき文字を表示
           sprintf(s,"%d",i/5);
           l =80; // 文字表示位置を80にする
@@ -541,11 +536,285 @@ void Display(void){
       }
   }
 }
-
-
     \end{lstlisting}
+    　リスト\ref{indexstr}の2行目から5行目では,実装に必要な変数の定義を行っている.そして,リスト\ref{indexstr}の
+    10行目から41行目のfor文がインデックスと文字盤を描画している部分である.for文の処理の大まかな
+    内容は,インデックスの表示をfor文を用いて,変数iが1から60までの60回ループすることで行っている.
+    文字盤の表示は60回ループするなかで,iが5の倍数のときに行っている.\\
+    リスト\ref{indexstr}の11行目から15行目では色の設定を行っている.そしてリスト\ref{indexstr}の
+    16行目ではインデックスを描画する太さを2.0に設定している.\\
+    　リスト\ref{indexstr}の17行目から25行目がインデックスの先端および終端の座標を計算して,描画する
+    部分である.時計の針の描画は,画面の中心と先端を線で結ぶことで行っていた.インデックスの描画は,先端
+    (中心に近いほう)の座標(x1,y1)と終端の座標(x2,y2)の二つを計算する必要がある.先端と終端の角度は同じであるから
+    長さを変えて計算を行えばよい.リスト\ref{indexstr}の17行目から22行目では時計の先端の座標を計算している.
+    長さはインデックスが5の倍数のとき,つまり文字盤を表示するとき90に設定し,それ以外の場合は100にしている.
+    こうすることで,図\ref{clock}に示すように,文字盤が表示されているインデックスの長さを伸ばして,見やすくしている.
+    長さの設定ができたから,リスト\ref{indexstr}の22行目に示すように,calPosition関数(リスト\ref{display1}の56行目から59行目)
+    を用いて先端の座標を計算する.同様に,リスト\ref{indexstr}の23,24行目で,長さを110に設定して終端の座標を計算
+    している.最後にdrawLine関数に先端と終端の座標を引数として与えることでインデックスが描画される.\\
+    　リスト\ref{indexstr}の27行目から40行目ではループ変数iが5の倍数のときに文字盤を表示する機能を実装している.
+    まず,27行目のif文で変数iが5の倍数かどうかを判定し,処理が分岐する.変数iが5の倍数のとき28行目のsprintf
+    関数を用いて文字列sに「i/5」の文字列を代入する.例えば変数iの値が5のときsには「1」の文字列が入る.
+    sprintfはprintfで標準出力される文字列が第一引数の変数に代入される.このため,「i/5」の値が文字列sに
+    代入される.そして,29行目および30行目で文字列を描画する位置を計算する.\\
+    　文字盤の表示は文字列が一桁(1～9)のときと二桁(10～12)のときで分けて処理を行っている.リスト\ref{indexstr}の
+    31行目から33行目が文字列が一桁のときの処理である.まず,文字列を描画する座標をglRasterPos2i関数に与える.
+    calPosition関数の計算結果からx座標を$-5$,y座標を$+5$しているのは表示位置を微調整しているためである.
+    そして,glutBitmapCharacter関数で文字列の描画を行う.glutBitmapCharacter関数の第一引数は描画するフォント
+    の種類を指定している.第二引数は表示する文字を与える.glutBitmapCharacter関数は一文字ずつしか描画できないが,
+    表示文字が一文字のため,s[0]を与えている.\\
+    　二桁(10～12)を表示する処理はリスト\ref{indexstr}の36行目から38行目である.まず,一桁目の描画と同様に
+    glRasterPos2iで描画する座標を指定する.ここでも表示位置の微調整を行っている.そしてglutBitmapCharacter関数
+    で1文字目を表示する.glutBitmapCharacter関数には自動で次の文字の描画位置に座標をずらす機能があるから,
+    続けて2文字目を表示する.これで2桁のときも画面に描画できる.リスト\ref{indexstr}の5行目で文字列sを要素数
+    3で定義しており,3文字目を描画しなくてよいのかと疑問に思うかもしれないが,3文字目はナル文字と呼ばれる文字列の終わり
+    を示す文字が入っているため描画する必要はない.
+
+    \subsection{年,月,日,曜日,時,分,秒の文字列を表示する機能}
+    日付の情報を画面に描画する機能の実装について説明する.リスト\ref{date}に日付情報を描画する機能を実装するた
+    めのコードを示す.
+
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=date,caption=日付情報を描画する機能の実装]
+void Display(void){
+  char *timestr; // 時間情報表示用文字列
+  int month,wday; // 月の番号,曜日の番号取得用
+  int timestr_len = 12; //year+space+space+month+space+(+)+\0
+  // 月の名前を定義
+  char month_eg[12][10] = {{"January"},{"February"},{"March"},{"April"},{"May"}
+  ,{"June"},{"July"},{"August"},{"Septermber"},{"October"},{"November"},{"December"}};
+  // 曜日の名前を定義
+  char wday_eg[7][10] = {{"Sunday"},{"Monday"},{"Tuesday"},{"Wednesday"},{"Thursday"}
+  ,{"Friday"},{"Saturday"}};
+
+  -----中略-----
+
+  // year,month,dayを表示
+  month = ts->tm_mon; // 月の番号を取得
+  wday =  ts->tm_wday; // 曜日の番号を取得 
+  // 可変文字列生成
+  timestr_len+=strlen(month_eg[month])+strlen(wday_eg[wday]); // 文字数計算
+  timestr = (char *)malloc(timestr_len*sizeof(char)); // 配列確保
+  // timestrに文字列書き込み
+  sprintf(timestr,"%d %s %02d (%s)",1900+ts->tm_year,month_eg[month],ts->tm_mday
+  ,wday_eg[wday]); 
+  // 文字列表示
+  if(dispMode){
+  glColor3ub(0,191,255);
+  }else{
+  glColor3ub(255,102,0);
+  }
+  Printstr(xc-(18*timestr_len/4),30+1,timestr,timestr_len); // 文字列表示
+  // 領域解放
+  free(timestr);
+
+//hour,min,secを表示
+  // 文字列生成
+  timestr = (char *)malloc(9*sizeof(char)); // 配列確保
+  // timestrに文字列書き込み
+  sprintf(timestr,"%02d:%02d:%02d",ts->tm_hour,ts->tm_min,ts->tm_sec); 
+  timestr_len = strlen(timestr); // 文字列の長さを取得
+  // 文字列表示
+  if(dispMode){
+  glColor3ub(0,255,0);
+  }else{
+  glColor3ub(0,0,205);
+  }
+  // 文字列表示(太文字用)
+  Printstr(xc-(18*timestr_len/4)+1,60,timestr,timestr_len); 
+  if(dispMode){
+  glColor3ub(51,255,102);
+  }else{
+  glColor3ub(0,0,205);
+  }
+  Printstr(xc-(18*timestr_len/4),60,timestr,timestr_len); // 文字列表示
+  // 領域解放
+  free(timestr);
+}
+
+// 文字列描画
+//座標(x,y)を初期位置として文字列str(文字列の長さstrlen)を画面に描画
+void Printstr(int x,int y,char *str,int strlen){
+    int i;
+    glRasterPos2i(x,y);
+    for(i=0;i<strlen;i++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,str[i]);
+    }
+}
+            \end{lstlisting}
+
+    　リスト\ref{date}の2行目から10行目では日付情報の描画に必要な変数を定義している.4行目の変数timestr\_lenは
+    文字列を格納する配列を動的生成するために文字数を計算している.ここでは月名および曜日名のように文字列が
+    可変である部分を除いた文字数を計算している.画面に描画したい文字は「\verb*|2020 [月名] 06 ([曜日])|」のような形
+    である.([ ]で囲んでいる部分が可変).「\verb*| |」は空白(スペース)を表している.年は4桁を仮定し,日は2桁で表示する
+    仕様にすると,固定で必要な文字は11文字である.変数timestr\_lenには11文字にナル文字用の1文字を足した12文字を代入している.\\
+    　6行目のmonth\_eg配列は月の名前を保持するための配列である.また,9行目のwday\_eg配列は曜日の名前を保持するための配列である.\\
+    　リスト\ref{date}の15行目から31行目では図\ref{clock}の「2020 November 17 (Tuesday)」にあたる部分を描画している.
+    15行目では月の番号,16行目では曜日の番号を取得している.18行目から22行目では画面に表示する文字列の生成を行っている.
+    18行目ではstrlen関数を用いて,表示すべき月および曜日の文字数を計算し,変数timestr\_lenに加算している.18行目で必要な文字列
+    の長さがわかったから,領域の確保を行う.領域の確保は19行目でmalloc関数を用いて行っている.領域が確保できたから文字列timestr
+    に文字列を代入する.文字列の代入は21行目でsprintf関数を用いて行っている.日の文字数を2桁にする処理もsprinf関数で行っている.\\
+    　表示する文字列が準備できたから,描画を行う.描画はリスト\ref{date}の24行目から29行目で行っている.まず24行目から27行目で描画する
+    色の設定を行う.ダークモードのときはライトブルー,ライトモードのときはオレンジになるように設定している.29行目で文字列の描画
+    をPrintstr関数を用いて行っている.Printstr関数の定義はリスト\ref{date}の59行目から65行目にある.Printstr関数は引数として
+    1文字目を描画する座標(x,y),および文字列,および文字列の長さを与える必要がある.Printstr関数の内部では,引数として受け取った
+    文字列をglutBitmapCharacterで1文字ずつ表示する処理を行っている.これによって文字列が画面に表示される.最後にmallocで確保し
+    た領域を解放する.領域の解放は31行目でfree関数を用いて行っている.\\
+    　同じ方法で時,分,秒の文字列を描画する.リスト\ref{date}において時,分,秒の文字列を描画している部分は35行目から
+    54行目である.まず,配列の確保を動的に行う.表示したい文字列は「\verb*|22:16:20|」のような形をしている.
+    すべての桁を2文字で表示する仕様にすると,必要な文字数は8文字である.リスト\ref{date}の35行目では,8文字にナル文字の1
+    文字を足した9文字の長さの配列を確保している.そのほかの処理は日付情報を画面に描画したときと同様である.46行目で
+    文字列を再度描画しているのは,表示する位置を$y$方向に1pxずらして,表示を太文字にするためである.このため,図\ref{clock}
+    で日付の表示と,太字で描画した時間の描画では,文字の太さに違いが見られる.
+    　
+    \subsection{時計の縁が回転する機能}
+    時計の縁を描画し,回転させる機能の実装について説明する.リスト\ref{huti}に時計の縁を描画し,回転させる機能を実装
+    するためのコードを示す.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=huti,caption=時計の縁の実装]
+void Display(void){
+
+  -----中略-----
+
+  // デザイン描画
+  l=128;
+  if(dispMode){
+  glColor3ub(218,112,214);
+  }else{
+  glColor3ub(127,255,0);
+  }
+  drawDesign(xc,yc,0,130,l,loop1);
+  l=124;
+  if(dispMode){
+  glColor3ub(38,38,38);
+  }else{
+  glColor3ub(245,245,255);
+  }
+  drawDesign(xc,yc,-1,131,l,loop1);
+
+
+
+  l=128;
+  if(dispMode){
+  glColor3ub(218,112,214);
+  }else{
+  glColor3ub(127,255,0);
+  }
+  drawDesign(xc,yc,160,270,l,loop1);
+  l=124;
+  if(dispMode){
+  glColor3ub(38,38,38);
+  }else{
+  glColor3ub(245,245,255);
+  }
+  drawDesign(xc,yc,159,271,l,loop1);
+
+
+
+
+
+  l=121;
+  if(dispMode){
+  glColor3ub(153,50,204);
+  }else{
+  glColor3ub(0,250,154);
+  }
+  drawDesign(xc,yc,70,200,l,loop2);
+  l=118;
+  if(dispMode){
+  glColor3ub(38,38,38);
+  }else{
+  glColor3ub(245,245,255);
+  }
+  drawDesign(xc,yc,69,201,l,loop2);
+
+
+
+  l=121;
+  if(dispMode){
+  glColor3ub(153,50,204);
+  }else{
+  glColor3ub(0,250,154);
+  }
+  drawDesign(xc,yc,240,380,l,loop2);
+  l=118;
+  if(dispMode){
+  glColor3ub(38,38,38);
+  }else{
+  glColor3ub(245,245,255);
+  }
+  drawDesign(xc,yc,239,381,l,loop2);
+
+// デザイン回転
+  loop1+=0.05;
+  loop2-=0.1;
+  if(loop1>=2*M_PI){
+      loop1=0;
+  }
+  if(loop2<=-2*M_PI){
+      loop2=0;
+  }
+}
+
+// デザインを描画
+// (xc,yc)を原点とする極座標をとる.
+// この極座標でthetaStartからtheraEndまで,長さlの扇形を描画する.
+// loopは扇形を回転させる変数.
+void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
+    int x,y,i;
+    double theta;
+    glBegin(GL_POLYGON);
+    for(i=thetaStart;i<=thetaEnd;i++){
+        theta= 2*M_PI*i/360;
+        calPosition(&x,&y,xc,yc,l,theta+loop);
+        glVertex2i(x,y);
+    }
+    glEnd();
+}
+            \end{lstlisting}
+    
+    　リスト\ref{huti}のDisplay関数において,時計の縁を描画する部分は次の4つに分けれられる.
+    ただし角度は回転を行う前,つまり初期の角度である.
+    \begin{enumerate}
+      \item 外側の縁を描画する部分(0度から130度) : リスト\ref{huti}の6～19行目
+      \item 外側の縁を描画する部分(160度から270度) : リスト\ref{huti}の23～36行目
+      \item 内側の縁を描画する部分(70度から200度) : リスト\ref{huti}の42～55行目
+      \item 内側の縁を描画する部分(240度から380度) : リスト\ref{huti}の59～72行目
+    \end{enumerate}
+    　描画する位置や角度は値の変更によって容易に行えるから,ここでは「外側の縁を描画する
+    部分(0度から130度)」について説明する.プログラムではリスト\ref{huti}の6～19行目である.
+    時計の縁の描画は2つの扇型を描画することで行っている.まず,0度から130度,長さが128の扇型
+    を描画する.色はライトモードではライムグリーン,ダークモードではパープルである.次に-1度
+    から131度,長さが124の扇型を描画する.色は背景色と同じ色を用いる.最初に描いた扇型に,
+    背景色と同じで,長さが短い扇型を上書きすることで,図\ref{clock}で円の弧のような図形が
+    描かれる.上書きする扇形の角度を,元の扇型の角度より大きくしているのは,角度が同じであると
+    端の線が表示される場合があるためである.\\
+    　プログラムでは,まず,6行目で長さを128に設定し,7行目から11行目で色の設定を行っている.そして,
+    12行目でdrawDesign関数を用いて色付きの扇型を描画している.drawDesign関数の定義は
+    リスト\ref{huti}の89行目から,99行目である.drawDesign関数は引数として,中心座標(xc,yc),
+    扇形を描く角度thetaStart,thetaEnd,長さl,扇形を回転させる変数loopをとる.
+    扇形を描く角度は,例として0度から90度の扇形を描く場合は,thetaStartに0,thetaEndに90を与える.
+    drawDesignの内部では,GL\_POLYGONおよびfor文を用いて扇形の描画を行っている.GL\_POLYGONは
+    指定された点を結ぶ図形を描く設定である.for文ではthetaStartからthetaEndまで1度ずつcalPosition関数
+    で座標を計算して,glVertex2i関数で描画を行っている.calPosition関数の角度にtheta$+$loopを与えることで
+    図形全体が回転する仕組みになっている.\\
+    　背景色と同じ扇形の描画もdrawDesign関数を用いることで同様に行う.これによって,角度および長さを変更
+    するだけで時計の縁を描画することができる.
+    他の3つの時計の縁も,同様にして描画できる.\\
+    　時計の縁全体を回転させる処理はリスト\ref{huti}の75行目から83行目で行っている.変数loop1,loop2はリスト
+    \ref{include}でグローバル変数として定義されていた.Display関数が呼ばれるたびにloop1は$+0.05$,loop2は$-0.1$
+    される.この変数をdrawDesign関数に与えることで図形全体が回転する.77行目から79行目では,loop1が$2\pi$より大きい,
+    つまり図形が一周したときに変数loop1を0に戻す処理を行っている.これを行うことで変数loop1が無限に大きくなることを
+    防いでいる.同様に,80行目から82行目では変数loop2が$-2\pi$より小さくなったときに,変数loop2を0に戻す処理を行っている.
 
     \section{ビルド方法の説明}
+    ビルド方法について説明する.まず,ダウンロードした「j17406.tar.gz」を解凍する.解凍は次のコマンドで行う.
+  \begin{screen}
+    gzip -dv j17406.tar.gz
+  \end{screen}
+  　解凍できたかどうかは次のコマンドで見ることができる.
+  \begin{screen}
+    tar xvf j17406.tar
+  \end{screen}
+  解凍が行えたからビルドを行う.解凍したファイルは次のような構造になっている.
     \section{実行結果とその説明}
 
     !付録
