@@ -36,11 +36,8 @@ int main(int argc,char **argv){
     glutTimerFunc(500,Timer,0);
     // display初期化
     glutInitDisplayMode(GLUT_RGBA);
-    if(dispMode){ // darkmodeのとき
-        glClearColor(0.15,0.15,0.15,1.0);
-    }else{ // lightmodeのとき
-        glClearColor(0.96,0.96,1.0,1.0);
-    }
+    glClearColor(0.96,0.96,1.0,1.0);
+    
     // メインループ
     glutMainLoop();
     return 0;
@@ -184,7 +181,7 @@ void Display(void){
     }else{
     glColor3ub(255,102,0);
     }
-    Printstr(WINDOW_W/2-(18*timestr_len/4),30+1,timestr,timestr_len); // 文字列表示
+    Printstr(xc-(18*timestr_len/4),30+1,timestr,timestr_len); // 文字列表示
     // 領域解放
     free(timestr);
 
@@ -199,13 +196,13 @@ void Display(void){
     }else{
     glColor3ub(0,0,205);
     }
-    Printstr(WINDOW_W/2-(18*timestr_len/4)+1,60,timestr,timestr_len); // 文字列表示(太文字用)
+    Printstr(xc-(18*timestr_len/4)+1,60,timestr,timestr_len); // 文字列表示(太文字用)
     if(dispMode){
     glColor3ub(51,255,102);
     }else{
     glColor3ub(0,0,205);
     }
-    Printstr(WINDOW_W/2-(18*timestr_len/4),60,timestr,timestr_len); // 文字列表示
+    Printstr(xc-(18*timestr_len/4),60,timestr,timestr_len); // 文字列表示
     // 領域解放
     free(timestr);
 
@@ -227,12 +224,6 @@ void Display(void){
         calPosition(&x2,&y2,xc,yc,l,theta);
         drawLine(x1,y1,x2,y2);
 
-
-        if(dispMode){
-        glColor3ub(255,255,255);
-        }else{
-        glColor3ub(0,0,0);
-        }
         if(i%5==0){ // 5の倍数のとき文字を表示
             sprintf(s,"%d",i/5);
             l =80; // 文字表示位置を80にする
