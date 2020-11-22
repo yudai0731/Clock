@@ -60,7 +60,7 @@
     目的とする.
 
     \section{実行環境}
-    実行環境を\ref{env}に示す.gccとは「GNU Compiler Collection」の略称で,GNUプロジェクトが公開しているコンパイラのことである.
+    実行環境を表\ref{env}に示す.gccとは「GNU Compiler Collection」の略称で,GNUプロジェクトが公開しているコンパイラのことである.
     makeはMakefileにプログラムのコンパイルやリンクの方法を指示することで,コンパイルを簡単に行うことができるツールのことである.
     makeを用いることは,gccコンパイル時に,長いオプションを入力しなくてよい,ファイルの更新を取得して必要なものだけをコンパイルしてくれる
     という利点がある.
@@ -83,8 +83,8 @@
     \label{s3}
     図\ref{clock}に示すアナログ時計のアプリケーションを作成した.
     時計の表示にはライトモードとダークモードの2種類がある.ライトモードとは白を基調とした
-    画面表示のことであり,ダークモードは黒を基調とした画面表示のことである.図\ref{clock}\ref{light}はライトモードのときの時計の表示例,図\ref{clock}\ref{dark}は
-    ダークモードのときの時計の表示例である.モードの切り替えは,時計アプリのウィンドウをマウスで左クリックすることで行うことができる.
+    画面表示のことであり,ダークモードは黒を基調とした画面表示のことである.図\ref{light}はライトモードのときの時計の表示例,図\ref{dark}は
+    ダークモードのときの時計の表示例である.モードの切り替えは,時計アプリのウィンドウをマウスで左クリックすることでできる.
 
         \begin{figure}[H]
           \begin{minipage}{0.5\hsize}
@@ -105,7 +105,7 @@
           \label{clock}
          \end{figure}
 
-         　このアプリでは次に示すものを画面に描画する.アナログ時計の縁は内側と外側があり,回転している.
+         このアプリでは次に示すものを画面に描画する.アナログ時計の縁は内側と外側があり,回転している.
          回転方向は外側が時計回り,内側が反時計周りである.
          \begin{itemize}
           \item アナログ時計
@@ -126,7 +126,7 @@
               時:分:秒 & 青 & 緑 \\
               時計の針(分針,時針)およびインデックス & 黒 & 白 \\
               時計の針(秒針) & 赤 & 赤 \\
-              時計の縁(内側) & スプリンググリーン & パープル \\
+              時計の縁(内側) & スプリンググリーン & 紫 \\
               時計の縁(外側) & ライムグリーン & ピンク \\ \hline
             \end{tabular}
         \end{center}
@@ -134,7 +134,7 @@
 
     \section{プログラムの説明}
     \ref{s3}章で述べたアプリケーションを作成するためには次に示す機能を実装しなければならない.
-    本章ではこれらを実装するプログラムの説明を行う.プログラムリスト全体については付録!を参照してほしい.
+    本章ではこれらを実装するプログラムの説明を行う.プログラムリスト全体は付録のリスト\ref{pro}を参照してほしい.
     \begin{itemize}
       \item ヘッダファイルの記述,オブジェクト形式マクロの宣言
       \item 初期化設定
@@ -148,12 +148,12 @@
     \end{itemize}
 
     \subsection{ヘッダファイルの記述,オブジェクト形式マクロの宣言}
-    プログラムの実行に必要なヘッダファイルの記述,および必要なマクロを定義する.リスト\ref{include}に
-    ヘッダファイルの記述,および必要なマクロを定義したコードを示す.glut.hがc言語でOpenGLを扱う
-    ためのライブラリである.また,time.hは時間の取得を行うためのライブラリである.\\
+    プログラムの実行に必要なヘッダファイルの記述,およびマクロを定義する.リスト\ref{include}に
+    ヘッダファイルの記述,および必要なマクロを定義したコードを示す.「glut.h」がc言語でOpenGLを扱う
+    ためのライブラリである.また,「time.h」は時間の取得を行うためのライブラリである.\\
     　本アプリではウィンドウサイズは320$\times$320に固定する.このため,リスト\ref{include}の8行目
     および9行目ではウィンドウのサイズを定義している.\\
-    　リスト\ref{include}1行目から13行目行目ではグローバル変数の定義を行っている.変数dispModeは
+    　リスト\ref{include}1行目から13行目ではグローバル変数の定義を行っている.変数dispModeは
     ライトモード,ダークモードの管理を行うための変数である.dispModeが1のときライトモード,0のとき
     ダークモードである.dispModeのデフォルト値はライトモードなっている.変数loop1,loop2はアナログ時計の縁を回転させるための変数である.
     \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=include,caption=定数および変数の定義]
@@ -201,7 +201,7 @@ int main(int argc,char **argv){
     \item 引数の処理をglutInit関数で行う.本アプリでは引数は使用しないから,ここではglutInit関数に形式的に引数を渡している
     だけである(リスト\ref{main}の4行目).
     \item 最初に開くウィンドウのサイズを指定する.ウィンドウのサイズの初期設定はglutInitWindowSize関数で行う.glutInitWindowSize関数の
-    引数は(横幅,縦幅)である.ここでは,オブジェクト形式マクロで定義したWINDOW\_Wを横幅,WINDOW\_Hを縦幅とする(リスト\ref{main}の6行目).
+    引数は(幅,高さ)である.ここでは,オブジェクト形式マクロで定義したWINDOW\_Wを幅,WINDOW\_Hを高さとする(リスト\ref{main}の6行目).
     \item 開くウィンドウのサイズが決まったから,ウィンドウを生成する.ウィンドウの生成はglutCreateWindow関数で行う.glutCreateWindow関数の引数
     として渡している文字列は図\ref{clock}において,ウィンドウの左上に表示されている文字列である.リスト\ref{main}の8行目では「clock」という文字列
     をglutCreateWindow関数に渡しているから図\ref{clock}のウィンドウの左上には「clock」と表示されている.
@@ -226,9 +226,9 @@ int main(int argc,char **argv){
   ウィンドウのリサイズへの対応について,仕様とプログラムでの実装部分を説明する.本アプリではウィンドウのリサイズを行っても,
   元のサイズ(320$\times$320)に戻される仕様になっている.これには2つの理由がある.1つ目は,アナログ時計を描画する部分において,
   ウィンドウのサイズに応じてアナログ時計の大きさを変化させるときに,中心からの距離の指定が複雑になることを防ぐためである.
-  2つ目は,文字列を表示している関数は自由に拡大縮小ができないため,画面の大きさに対して不格好な描画になってしまうためである.\\
+  2つ目は,文字列を表示している関数は自由に文字の拡大縮小ができないため,画面の拡大縮小によって画面の大きさに対して不格好な描画になってしまうためである.\\
   　ウィンドウのサイズ変更イベントの処理を行う関数はReshape関数であった.リスト\ref{reshape}にReshape関数のコードを示す.
-  リスト\ref{reshape}において,Reshape関数の引数は新しいウィンドウの幅,高さhである.
+  リスト\ref{reshape}において,Reshape関数の引数は新しいウィンドウの幅w,高さhである.
   \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=reshape,caption=Reshape関数]
 void Reshape(int w,int h){
     //printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
@@ -271,8 +271,8 @@ void Reshape(int w,int h){
 
     \subsection{タイマーを用いた画面描画の更新}
     タイマーによって一定時間おきに画面描画を更新する仕組みについて説明する.実装したいことは
-    タイマーによって一定おきにイベントが発生することと,画面描画を更新することに切り分けられる.
-    本節では,前者のタイマーによって一定おきにイベントが発生する仕組みについて説明する.後者は
+    タイマーによって一定おきにイベントが発生させることと,画面描画を更新することに切り分けられる.
+    本節では,前者のタイマーによって一定おきにイベントを発生させる仕組みについて説明する.後者は
     ここでは,画面描画を更新するDisplay関数がうまくやってくれると考える.\\
     　第一引数の時間(ミリ秒)が経過したときに,タイマーの処理を行う関数はTimer関数であった.Timer関数の
     コードをリスト\ref{timer}に示す.Timer関数はメイン関数(リスト\ref{main})の13行目に呼ばれる.
@@ -317,7 +317,7 @@ void Mouse(int b,int s,int x,int y){
       を判定し,3行目のif文でボタンが「離された」ことを判定している.このように,マウスイベントの判定は,「左ボタンがクリックされたか」
       という事象を,イベントがあったボタンの種類,押されたのか離されたのか,という2つに分解して判定している.
       そして,5行目から8行目で2つのモードの切り替えを行っている.\\
-      　リスト\ref{mouse}の10行目から14行目ではdispModeの変更に伴って,背景色を変更したいから,glClearColor関数を実行する処理を行っている.
+      　リスト\ref{mouse}の10行目から14行目ではdispModeの変更に伴って,背景色を変更したいから,glClearColor関数を実行している.
 
     \subsection{アナログ時計の針を表示する機能}
     画面表示を行う関数としてDisplay関数を作成し,次の機能を実装する.Display関数の設計として,画面に表示する順番がある.
@@ -325,7 +325,7 @@ void Mouse(int b,int s,int x,int y){
     年月日に関する文字列の3つが同程度に重要である.時計の縁はデザイン性を高めるためのものであるから最も重要度が低い.
     したがって,フロー処理においてこれらを描画する順番は箇条書きの順番と一致する.Display関数における4つの機能の実装
     プログラムの説明は,プログラムの必要な部分を抜粋して行う.このため描画する順番がわかりずらい.プログラムソース全体
-    は付録!に載っているから,描画の順番は付録!の!を参照してほしい.
+    は付録に載っているから,描画の順番は付録のリスト\ref{pro}を参照してほしい.
     \begin{enumerate}
       \item 時計の縁が回転する機能 
       \item 年,月,日,曜日,時,分,秒の文字列を表示する機能
@@ -423,7 +423,7 @@ void drawLine(int x1,int y1,int x2,int y2){
               　我々がほしい情報は現在時刻はtm構造体が保持しているため,time\_t型から変換を行う必要がある.この変換
               を行っているのが,リスト\ref{display1}の24行目である.tm構造体の構造はリスト\ref{tm}のようになっている.
               現在時間の情報の取得方法の例として,日付の情報がほしい場合は「ts-$>$tm\_mday」と記述することで取得できる.
-              他の情報の取得方法もリスト\ref{tm}を参考に取得できる.
+              他の情報もリスト\ref{tm}を参考に取得できる.
 
     \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=tm,caption=tm構造体]
 struct tm{
@@ -439,7 +439,7 @@ struct tm{
 }
             \end{lstlisting}
 
-            　時間の取得ができたから,アナログ時計の針の角度および座標を計算する.リスト\ref{display1}では27行目から32行目である.
+            時間の取得ができたから,アナログ時計の針の角度および座標を計算する.リスト\ref{display1}では27行目から32行目である.
             27行目から29行目ではそれぞれの針の角度を計算している.角度は図\ref{tokei}に示すように時計の12時の位置を0度としている.
     \begin{figure}[H]
       \centering
@@ -448,8 +448,8 @@ struct tm{
        \label{tokei}
       \end{figure}
 
-      　時刻h時m分s秒のときの秒針の角度$\theta_s$は式(\ref{thetas})で与えられる.同様に分針の角度$\theta_m$は式(\ref{thetam}),
-      分針の角度$\theta_h$は式(\ref{thetah})で計算できる.
+      時刻h時m分s秒のときの秒針の角度$\theta_s$は式(\ref{thetas})で与えられる.同様に分針の角度$\theta_m$は式(\ref{thetam}),
+      時針の角度$\theta_h$は式(\ref{thetah})で計算できる.
           \begin{eqnarray}
             \label{thetas}
       \theta_s &=& \frac{2\pi s}{60}  \\
@@ -462,7 +462,7 @@ struct tm{
         角度が計算できたから,中心からの距離と角度の情報をもとに,針先の座標を計算する.針先の座標の計算はリスト\ref{display1}の
         30行目から32行目に示すようにcalPosition関数で行っている.calPosition関数の定義はリスト\ref{display1}の56行目から59行目
         にある.calPosition関数は,針先の座標を格納する変数x,yのポインタ,中心座標(xc,yc),中心からの距離r,角度thetaの6つを引数とし
-        ている.計算結果は戻り値ではなくx,yに代入される.極座標($r$,$\theta$)から直交座標($x$,$y$)の変換は式(\ref{posix})および
+        ている.計算結果は戻り値ではなくx,yに代入される.極座標($l$,$\theta$)から直交座標($x$,$y$)の変換は式(\ref{posix})および
         式(\ref{posiy})でできる.
 
         \begin{eqnarray}
@@ -483,12 +483,12 @@ struct tm{
       glLineWidth関数は引数に太さを数値で与えると,値に応じた太さで線が描画させる.同様に,44行目で分針,47行目で秒針の太さを設定している.
       図\ref{clock}を見ると,それぞれの針で太さが変わっていることがわかる.\\
       　時針の描画は42行目,分針の描画は44行目,秒針の描画は49行目で行っている.針の描画を行う関数はdrawLine関数である.drawLine関数は
-      リスト\ref{clock}の63行目から68行目で定義している.drawLine関数は引数として2点の座標(x1,y1),(x2,y2)を与えると,この2点を
+      リスト\ref{display1}の63行目から68行目で定義している.drawLine関数は引数として2点の座標(x1,y1),(x2,y2)を与えると,この2点を
       結ぶ線を描画する機能をもつ.線を結ぶ方法は64行目のglBegin関数で画面描画を行うことを宣言する.67行目のglEnd関数はglBegin関数と
       対になる関数である.直線を描くための点はglVertex2i関数で指定する.65および66行目のように,glVertex2i関数に座標をわたすことで
       直線を描くための点を指定できる.そして,glBegin関数に「GL\_LINES」を引数として指定することで直線を描くことができる.\\
-      　ここまでで描画した内容はキューにためられているだけで,まだ描画されていない.このキューの内容を実行して画面に反映させる関数が
-      リスト\ref{clock}の51行目のglFlush関数である.
+      　ここまでで描画した内容はキューに貯められているだけで,まだ描画されていない.このキューの内容を実行して画面に反映させる関数が
+      リスト\ref{display1}の51行目のglFlush関数である.
 
     \subsection{アナログ時計のインデックス,文字盤を表示する機能}
     アナログ時計のインデックス(目盛り)および文字盤を表示する機能の実装について説明する.リスト\ref{indexstr}に
@@ -539,7 +539,7 @@ void Display(void){
     \end{lstlisting}
     　リスト\ref{indexstr}の2行目から5行目では,実装に必要な変数の定義を行っている.そして,リスト\ref{indexstr}の
     10行目から41行目のfor文がインデックスと文字盤を描画している部分である.for文の処理の大まかな
-    内容は,インデックスの表示をfor文を用いて,変数iが1から60までの60回ループすることで行っている.
+    内容は,インデックスの表示を,変数iが1から60までの60回ループすることで行っている.
     文字盤の表示は60回ループするなかで,iが5の倍数のときに行っている.\\
     リスト\ref{indexstr}の11行目から15行目では色の設定を行っている.そしてリスト\ref{indexstr}の
     16行目ではインデックスを描画する太さを2.0に設定している.\\
@@ -771,7 +771,7 @@ void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
 }
             \end{lstlisting}
     
-    　リスト\ref{huti}のDisplay関数において,時計の縁を描画する部分は次の4つに分けれられる.
+    　リスト\ref{huti}のDisplay関数において,時計の縁を描画する部分は次の4つに分けられる.
     ただし角度は回転を行う前,つまり初期の角度である.
     \begin{enumerate}
       \item 外側の縁を描画する部分(0度から130度) : リスト\ref{huti}の6～19行目
@@ -781,14 +781,14 @@ void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
     \end{enumerate}
     　描画する位置や角度は値の変更によって容易に行えるから,ここでは「外側の縁を描画する
     部分(0度から130度)」について説明する.プログラムではリスト\ref{huti}の6～19行目である.
-    時計の縁の描画は2つの扇型を描画することで行っている.まず,0度から130度,長さが128の扇型
+    時計の縁の描画は2つの扇を描画することで行っている.まず,0度から130度,長さが128の扇形
     を描画する.色はライトモードではライムグリーン,ダークモードではパープルである.次に-1度
-    から131度,長さが124の扇型を描画する.色は背景色と同じ色を用いる.最初に描いた扇型に,
-    背景色と同じで,長さが短い扇型を上書きすることで,図\ref{clock}で円の弧のような図形が
-    描かれる.上書きする扇形の角度を,元の扇型の角度より大きくしているのは,角度が同じであると
+    から131度,長さが124の扇形を描画する.色は背景色と同じ色を用いる.最初に描いた扇形に,
+    背景色と同じで,長さが短い扇形を上書きすることで,図\ref{clock}で円の弧のような図形が
+    描かれる.上書きする扇形の角度を,元の扇形の角度より大きくしているのは,角度が同じであると
     端の線が表示される場合があるためである.\\
     　プログラムでは,まず,6行目で長さを128に設定し,7行目から11行目で色の設定を行っている.そして,
-    12行目でdrawDesign関数を用いて色付きの扇型を描画している.drawDesign関数の定義は
+    12行目でdrawDesign関数を用いて色付きの扇形を描画している.drawDesign関数の定義は
     リスト\ref{huti}の89行目から,99行目である.drawDesign関数は引数として,中心座標(xc,yc),
     扇形を描く角度thetaStart,thetaEnd,長さl,扇形を回転させる変数loopをとる.
     扇形を描く角度は,例として0度から90度の扇形を描く場合は,thetaStartに0,thetaEndに90を与える.
@@ -811,7 +811,7 @@ void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
     gzip -dv j17406.tar.gz \\
     tar xvf j17406.tar
   \end{screen}
-  　解凍ができたからビルドを行う.解凍したファイルは次のような構造になっている.
+  　解凍したファイルは次のような構造になっている.
   \begin{screen}
 j17406 \\
 ├── Makefile \\
@@ -821,12 +821,23 @@ j17406 \\
 ├── readme.txt \\
 └── smalltile.ico 
   \end{screen}
-  　ビルドは次のコマンドで行う.「make」のみでコンパイルが終わる仕組みを説明する.
-  ファイルの中にはmakeでビルドを行うためのMakefileが用意されている.
-  Makefileのコードをリスト\ref{make}に示す.
+  　解凍ができたから次に示すコマンドでビルドを行う.makeを実行するとリスト\ref{war}のような警告がでるが時計のアプリは問題なく実行できる.
   \begin{screen}
 make
   \end{screen}
+
+  \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=war,caption=コンパイル時の警告]
+In file included from j17406.c:2:
+/usr/include/opengl/GL/glut.h:562:21: 警告: ‘glutCreateMenu_ATEXIT_HACK’ defined but 
+not used [-Wunused-function]
+  562 | static int APIENTRY glutCreateMenu_ATEXIT_HACK(void (GLUTCALLBACK *func)(int)) 
+  { return __glutCreateMenuWithExit(func, exit); }
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc j17406.o  -o j17406.exe -lglpng -lglut32 -lglu32 -lopengl32 -lm myicon.o
+  \end{lstlisting}
+
+    「make」のみでコンパイルが終わる仕組みを説明する.Makefileのコードをリスト\ref{make}に示す.
+  ファイルの中にはmakeでビルドを行うためのMakefileが用意されている.
   リスト\ref{make}の6行目は最終的に出来上がるファイルを指定している.ここではj17406.exeという
   ファイルが出来上がる.9行目ではコンパイルするファイルを指定している.コンパイルするファイルはj17406.c
   であるからこれを指定する.18行目から22行目では,コンパイラ,リンカの指定,およびコンパイルオプションの指定
@@ -875,7 +886,471 @@ clean :
 
     \section{実行結果とその説明}
     本章では,次に示す実行結果およびその説明について述べる.
-    
-    !付録
-\end{document}
+    \begin{enumerate}
+      \item アプリ実行時の画面表示
+      \item 時計の時間があっているかの確認
+      \item ライトモードとダークモードの切り替え
+    \end{enumerate}
 
+    \subsection{アプリ実行時の画面表示}
+    アプリを次のコマンドから,もしくはエクスプローラーでj17406.exeをダブルクリックして実行すると
+    図\ref{start}の画面が立ち上がる.
+    \begin{screen}
+.\verb*|\|j17406.exe
+        \end{screen}
+            
+  \begin{figure}[H]
+      \centering
+      \includegraphics[scale=1.2]{start.eps}
+      \caption{アプリ実行時に立ち上がる画面}
+       \label{start}
+      \end{figure}
+
+      　アプリを立ち上げたときのモードの設定はライトモードになっていた.図\ref{start}で,アプリを立ち上げた
+      とき,画面はライトモードになっていることがわかる.また,時計の上に文字列として日付および時間の情報が表示されている.
+      時計の縁は縁全体の回転が0度のとき,次のような設定になっていた.
+      \begin{enumerate}
+        \item 外側の縁(0度から130度)
+        \item 外側の縁(160度から270度)
+        \item 内側の縁(70度から200度) 
+        \item 内側の縁(240度から380度)
+      \end{enumerate}
+      　12時を0度とすると,角度と時間の関係は表\ref{timedo}に示すようになっている.
+      表\ref{timedo}で示している角度と時間の関係は,縁を描画する初期設定の角度になっている
+      ものである.
+      \begin{table}[H]
+        \caption{角度と時間の関係}
+      \label{timedo}
+      \begin{center}
+          \begin{tabular}{c|c}\hline
+            角度(度) & 時間(分) \\ \hline 
+            0 & 0.00 \\
+            70 & 11.7 \\
+            130 & 21.67 \\
+            160 & 26.67 \\
+            200 & 33.33 \\
+            240 & 40.00 \\
+            270 & 45.00 \\
+            380 & 3.33 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+
+      　表\ref{timedo}から,1つ目の外側の縁は,0度から130度であるから,時計のインデックスで表すと
+      0分から21.67分までの角度の弧を描くことがわかる.
+      図\ref{start}において,1つ目の外側の縁は0分からおおよそ21.67分の弧を描いている.
+      他の縁も同様にして,正しい角度で描けていることがわかる.このことから
+      回転のない初期状態のとき,時計の縁が正しく描けていることがわかる.
+
+      \subsection{時計の時間があっているかの確認}
+      アプリの時計の時間があっているか確認する.図\ref{time1}および図\ref{time2}に,
+      アプリの画面とWindowsの時計を同時に表示したときの画像を示す.どちらの図も
+      左側にアプリの時計,右側にWindowsの時計が表示されている.\\
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.2]{timecheck.eps}
+        \caption{アプリの時間の確認1}
+         \label{time1}
+        \end{figure}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.2]{timecheck2.eps}
+          \caption{アプリの時間の確認}
+           \label{time2}
+          \end{figure}
+      　図\ref{time1}のWindowsの時計から,図\ref{time1}は「2020年11月21日19時56分09秒」に実行したものであることが
+      わかる.さらに,Windowsのカレンダーから曜日が土曜日(Saturday)であることがわかる.そして,アプリの時計は
+      「2020 November 21(Saturday) 19:56:09」になっており,Widnowsの時計と一致していることがわかる.\\
+      　図\ref{time2}も同様に確認する.図\ref{time2}のWindowsの時計は「2020年11月22日08時48分36秒 日曜日」であることが
+      わかる.アプリの時計もWindowsの時計と同じになっていることがわかる.これによって,Windowsの時計とアプリの時計が一致している
+      ことが確認できた.
+
+        \subsection{ライトモードとダークモードの切り替え}
+        ライトモードとダークモードの切り替えを左クリックで行えることを確認する.
+        図\ref{w1}から図\ref{w2}にライトモードとダークモードを切り替えたときの画面を示す.
+        アプリを立ち上げると図\ref{w1}に示すようにライトモードになっている.
+        この状態で左クリックを1回押すとダークモードに切り替わる.図\ref{b}は左クリックを1回
+        押したときの結果である.図\ref{b}より,ライトモードで左クリックを1回押すとダークモードに切り替わることが
+        確認できた.\\
+        　ダークモードで左クリックを1回押すとライトモードに切り替わることを確認する.図\ref{w2}に
+        図\ref{b}の状態で左クリックを1回押した結果を示す.図\ref{w2}より,ダークモードで左クリックを
+        1回押すとライトモードに切り替わることが確認できた.
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.1]{white1.eps}
+          \caption{左クリックを押す前の画面}
+           \label{w1}
+          \end{figure}
+
+          \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.1]{black.eps}
+          \caption{1回左クリックしたときの画面}
+           \label{b}
+          \end{figure}
+
+          \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.1]{white2.eps}
+            \caption{2回左クリックしたときの画面}
+             \label{w2}
+            \end{figure}
+
+        \section{感想}
+        今回のレポートではプログラムを書く部分よりも,時計やアイコンのデザインを決めて,描くほうが難しく時間がかかりました.
+        時計のデザインはなるべくシンプルで自分が作業中のディスプレイの片隅に置いておきたいというコンセプトで作成しました.
+        次のレポートでは,もう少し複雑な描画を用いてみたいと考えています.
+        
+        \section{付録}
+        リスト\ref{pro}にプログラム全体のソースコードを示す.
+        \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=pro,caption=時計アプリのソースコード]
+// 17406 金澤雄大 11/17
+#include<GL/glut.h>
+#include<stdio.h>
+#include<time.h>
+#include<math.h>
+#include<string.h>
+
+// windowのサイズを定義
+#define WINDOW_W 320
+#define WINDOW_H 320
+
+int dispMode =0; // 0 : LIGHTMODE 1 : DARKMODE
+double loop1=0; //use for design rotation
+double loop2=0; //use for design rotation
+void Display(void);
+void Reshape(int,int);
+void Timer(int);
+void Printstr(int,int,char *,int);
+void calPosition(int *,int *,int,int,int,double);
+void drawLine(int,int,int,int);
+void drawDesign(int,int,int,int,int,double);
+void Mouse(int,int,int,int);
+
+int main(int argc,char **argv){
+// 初期化処理
+    // 引数処理
+    glutInit(&argc,argv);
+    // 初期Windowサイズ設定
+    glutInitWindowSize(WINDOW_W,WINDOW_H);
+    // 新規Window作成
+    glutCreateWindow("clock");
+    // 関数登録
+    glutDisplayFunc(Display);
+    glutReshapeFunc(Reshape);
+    glutMouseFunc(Mouse);
+    glutTimerFunc(500,Timer,0);
+    // display初期化
+    glutInitDisplayMode(GLUT_RGBA);
+    glClearColor(0.96,0.96,1.0,1.0);
+    
+    // メインループ
+    glutMainLoop();
+    return 0;
+}
+
+void Display(void){
+    int i; //ループ用
+    char *timestr; // 時間情報表示用文字列
+    int month,wday; // 月の番号,曜日の番号取得用
+    int timestr_len = 12; //year+space+space+month+space+(+)+\0
+    // 月の名前を定義
+    char month_eg[12][10] = {{"January"},{"February"},{"March"},{"April"},{"May"},
+    {"June"},{"July"},{"August"},{"Septermber"},{"October"},{"November"},{"December"}};
+    // 曜日の名前を定義
+    char wday_eg[7][10] = {{"Sunday"},{"Monday"},{"Tuesday"},{"Wednesday"},{"Thursday"},
+    {"Friday"},{"Saturday"}};
+    
+    // 画面サイズ取得
+    int xc = glutGet(GLUT_WINDOW_WIDTH)/2;
+    int yc = glutGet(GLUT_WINDOW_HEIGHT)/2+30; // y軸方向の中心は30ずらす.
+    
+    // インデックス描画用
+    double l,theta; 
+    int x1,x2,y1,y2;
+    char s[3];
+
+    // 針の角度
+    double thetas,thetam,thetah;
+    // 針の座標
+    int xs,ys,xm,ym,xh,yh;
+    // 針の長さ
+    int ls=80;
+    int lm = 105;
+    int lh = 90; 
+
+    // 描画クリア
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+// 時間取得
+    time_t tt;
+    struct tm *ts;
+    time(&tt);
+    ts = localtime(&tt);
+
+// 針の角度,座標を計算
+    thetas = 2*M_PI*ts->tm_sec/60;
+    thetam = 2*M_PI*(60*ts->tm_min+ts->tm_sec)/3600;
+    thetah = 2*M_PI*(3600*(ts->tm_hour%12)+60*ts->tm_min+ts->tm_sec)/43200;
+    calPosition(&xs,&ys,xc,yc,ls,thetas);
+    calPosition(&xm,&ym,xc,yc,lm,thetam);
+    calPosition(&xh,&yh,xc,yc,lh,thetah);
+
+// デザイン描画
+    l=128;
+    if(dispMode){
+    glColor3ub(218,112,214);
+    }else{
+    glColor3ub(127,255,0);
+    }
+    drawDesign(xc,yc,0,130,l,loop1);
+    l=124;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,-1,131,l,loop1);
+
+
+
+    l=128;
+    if(dispMode){
+    glColor3ub(218,112,214);
+    }else{
+    glColor3ub(127,255,0);
+    }
+    drawDesign(xc,yc,160,270,l,loop1);
+    l=124;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,159,271,l,loop1);
+
+
+
+
+
+    l=121;
+    if(dispMode){
+    glColor3ub(153,50,204);
+    }else{
+    glColor3ub(0,250,154);
+    }
+    drawDesign(xc,yc,70,200,l,loop2);
+    l=118;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,69,201,l,loop2);
+
+
+
+    l=121;
+    if(dispMode){
+    glColor3ub(153,50,204);
+    }else{
+    glColor3ub(0,250,154);
+    }
+    drawDesign(xc,yc,240,380,l,loop2);
+    l=118;
+    if(dispMode){
+    glColor3ub(38,38,38);
+    }else{
+    glColor3ub(245,245,255);
+    }
+    drawDesign(xc,yc,239,381,l,loop2);
+
+// デザイン回転
+    loop1+=0.05;
+    loop2-=0.1;
+    if(loop1>=2*M_PI){
+        loop1=0;
+    }
+    if(loop2<=-2*M_PI){
+        loop2=0;
+    }
+
+// year,month,dayを表示
+    month = ts->tm_mon; // 月の番号を取得
+    wday =  ts->tm_wday; // 曜日の番号を取得 
+    // 可変文字列生成
+    timestr_len+=strlen(month_eg[month])+strlen(wday_eg[wday]); // 文字数計算
+    timestr = (char *)malloc(timestr_len*sizeof(char)); // 配列確保
+    sprintf(timestr,"%d %s %02d (%s)",1900+ts->tm_year,month_eg[month],ts->tm_mday,
+    wday_eg[wday]); // timestrに文字列書き込み
+    // 文字列表示
+    if(dispMode){
+    glColor3ub(0,191,255);
+    }else{
+    glColor3ub(255,102,0);
+    }
+    Printstr(xc-(18*timestr_len/4),30+1,timestr,timestr_len); // 文字列表示
+    // 領域解放
+    free(timestr);
+
+//hour,min,secを表示
+    // 文字列生成
+    timestr = (char *)malloc(9*sizeof(char)); // 配列確保
+    // timestrに文字列書き込み
+    sprintf(timestr,"%02d:%02d:%02d",ts->tm_hour,ts->tm_min,ts->tm_sec);
+    timestr_len = strlen(timestr); // 文字列の長さを取得
+    // 文字列表示
+    if(dispMode){
+    glColor3ub(0,255,0);
+    }else{
+    glColor3ub(0,0,205);
+    }
+    Printstr(xc-(18*timestr_len/4)+1,60,timestr,timestr_len); // 文字列表示(太文字用)
+    if(dispMode){
+    glColor3ub(51,255,102);
+    }else{
+    glColor3ub(0,0,205);
+    }
+    Printstr(xc-(18*timestr_len/4),60,timestr,timestr_len); // 文字列表示
+    // 領域解放
+    free(timestr);
+
+// インデックス描画
+    for(i=1;i<=60;i++){
+        if(dispMode){
+        glColor3ub(255,255,255);
+        }else{
+        glColor3ub(0,0,0);
+        }
+        glLineWidth(2.0);
+        l=100; // インデックスの先端を長さ110にする
+        if(i%5==0){  // 5の倍数の針は長くする
+        l = 90; // インデックスの終端を長さ90にする
+        }
+        theta = 2*M_PI*i/60;
+        calPosition(&x1,&y1,xc,yc,l,theta);
+        l = 110;
+        calPosition(&x2,&y2,xc,yc,l,theta);
+        drawLine(x1,y1,x2,y2);
+
+        if(i%5==0){ // 5の倍数のとき文字を表示
+            sprintf(s,"%d",i/5);
+            l =80; // 文字表示位置を80にする
+            calPosition(&x2,&y2,xc,yc,l,theta);
+            if(i/5<10){ // 一桁表示用
+                glRasterPos2i(x2-5,y2+5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+
+            }else{ // 二桁表示用
+                glRasterPos2i(x2-14,y2+5);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[0]);
+                glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,s[1]);
+            }
+        }
+    }
+
+// 針を描画
+    //時針描画
+    if(dispMode){
+    glColor3ub(255,255,255);
+    }else{
+    glColor3ub(0,0,0);
+    }
+    glLineWidth(5.0);
+    drawLine(xc,yc,xh,yh);
+    //分針描画
+    glLineWidth(3.0);
+    drawLine(xc,yc,xm,ym);
+    //秒針描画
+    glLineWidth(2.0);
+    glColor3ub(255,0,0);
+    drawLine(xc,yc,xs,ys);
+
+    glFlush();
+}
+
+
+// windowサイズが変更されたときの処理
+void Reshape(int w,int h){
+    //printf("ウィンドウの幅と高さ=%d x %d\n",w,h);
+    glViewport(0,0,w,h);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluOrtho2D(0,w,0,h);
+    glScaled(1,-1,1);
+    glTranslated(0,-h,0);
+
+    //windowサイズ固定 
+    glutReshapeWindow(WINDOW_W,WINDOW_H);
+
+}
+
+// タイマーの処理
+void Timer(int value){
+    glutPostRedisplay();
+    glutTimerFunc(500,Timer,0);
+}
+
+// 文字列描画
+//座標(x,y)を初期位置として文字列str(文字列の長さstrlen)を画面に描画
+void Printstr(int x,int y,char *str,int strlen){
+    int i;
+    glRasterPos2i(x,y);
+    for(i=0;i<strlen;i++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,str[i]);
+    }
+}
+
+// 極座標と直交座標を変換
+//極座標(r,theta)を(xc,yc)を原点とした直交座標(x,y)に変換
+void calPosition(int *x,int *y,int xc,int yc,int r,double theta){
+    *x = xc+r*sin(theta);
+    *y = yc-r*cos(theta);
+}
+
+// lineを描画
+//(x1,y1)と(x2,y2)を結ぶ直線を描画
+void drawLine(int x1,int y1,int x2,int y2){
+    glBegin(GL_LINES);
+    glVertex2i(x1,y1);
+    glVertex2i(x2,y2);
+    glEnd();
+};
+
+// デザインを描画
+// (xc,yc)を原点とする極座標をとる.
+// この極座標でthetaStartからtheraEndまで,長さlの扇形を描画する.
+// loopは扇形を回転させる変数.
+void drawDesign(int xc,int yc,int thetaStart,int thetaEnd,int l,double loop){
+    int x,y,i;
+    double theta;
+    glBegin(GL_POLYGON);
+    for(i=thetaStart;i<=thetaEnd;i++){
+        theta= 2*M_PI*i/360;
+        calPosition(&x,&y,xc,yc,l,theta+loop);
+        glVertex2i(x,y);
+    }
+    glEnd();
+}
+
+// 左クリック時にmodeを切り替える
+void Mouse(int b,int s,int x,int y){
+    if(b==GLUT_LEFT_BUTTON){
+        if(s==GLUT_UP){
+            if(dispMode==1){
+                dispMode=0;
+            }else{
+                dispMode=1;
+            }
+        }
+        if(dispMode){
+            glClearColor(0.15,0.15,0.15,1.0);
+        }else{
+            glClearColor(0.96,0.96,1.0,1.0);
+        }
+    }
+}
+        \end{lstlisting}
+\end{document}
